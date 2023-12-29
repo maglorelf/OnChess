@@ -1,4 +1,5 @@
 ---
+import "../assert/styles/global.css";
 const pageTitle = "About v";
 const identity = {
   firstName: "Marcos",
@@ -7,6 +8,10 @@ const identity = {
 };
 const skills = ["c#", "Javascript"];
 const showLabel = true;
+const minSkills = 2;
+
+const skillColor = "red";
+const fontWeigth = "4rem";
 ---
 
 <html lang="en">
@@ -16,6 +21,15 @@ const showLabel = true;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <style define:vars={{ skillColor, fontWeigth }}>
+      h1 {
+        color: navy;
+        font-size: var(--fontWeigth);
+      }
+      .skill {
+        color: var(--skillColor);
+      }
+    </style>
   </head>
   <body>
     <a href="/">Home</a>
@@ -25,8 +39,9 @@ const showLabel = true;
     <h2>Pourpose of the page</h2>
     <p>Create a website to manage the chess activities online</p>
     <p>My name is: {identity.firstName} and I live in {identity.country}</p>
+    {minSkills === skills.length ? <p>Skills list</p> : <p>Big skills</p>}
     <ul>
-      {skills.map((skill) => <li>{skill}</li>)}
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
     {showLabel && <p>Label optional</p>}
   </body>
