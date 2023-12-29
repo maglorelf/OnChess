@@ -1,5 +1,12 @@
 ---
-
+const pageTitle = "About v";
+const identity = {
+  firstName: "Marcos",
+  country: "Spain",
+  occupation: "Developer and Chess player",
+};
+const skills = ["c#", "Javascript"];
+const showLabel = true;
 ---
 
 <html lang="en">
@@ -8,14 +15,19 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>On Chess - About</title>
+    <title>{pageTitle}</title>
   </head>
   <body>
     <a href="/">Home</a>
     <a href="/about">About</a>
     <a href="/blog">Blog</a>
-    <h1>About</h1>
+    <h1>{pageTitle}</h1>
     <h2>Pourpose of the page</h2>
     <p>Create a website to manage the chess activities online</p>
+    <p>My name is: {identity.firstName} and I live in {identity.country}</p>
+    <ul>
+      {skills.map((skill) => <li>{skill}</li>)}
+    </ul>
+    {showLabel && <p>Label optional</p>}
   </body>
 </html>
