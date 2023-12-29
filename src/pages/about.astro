@@ -1,5 +1,8 @@
 ---
 import "../assert/styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+
 const pageTitle = "About v";
 const identity = {
   firstName: "Marcos",
@@ -32,9 +35,7 @@ const fontWeigth = "4rem";
     </style>
   </head>
   <body>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/blog">Blog</a>
+    <Header />
     <h1>{pageTitle}</h1>
     <h2>Pourpose of the page</h2>
     <p>Create a website to manage the chess activities online</p>
@@ -44,5 +45,6 @@ const fontWeigth = "4rem";
       {skills.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
     {showLabel && <p>Label optional</p>}
+    <Footer />
   </body>
 </html>

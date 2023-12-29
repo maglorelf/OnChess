@@ -1,0 +1,10 @@
+---
+import Social from "./Social.astro";
+const platform = "github";
+---
+
+<footer>
+  <p>Use {platform} as repo</p>
+  <Social platform={platform} />
+  <Social platform="Twitch" />
+</footer>
