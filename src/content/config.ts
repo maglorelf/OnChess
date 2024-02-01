@@ -1,27 +1,35 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
-const blog = defineCollection({
-	type: 'content',
-	// Type-check frontmatter using a schema
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		// Transform string to Date object
-		pubDate: z.coerce.date(),
-		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string().optional(),
-	}),
+// Blog collection schema
+const blogCollection = defineCollection({
+  schema: z.object({
+    id: z.string().optional(),
+    title: z.string(),
+    subtitle: z.string().optional(),
+    date: z.date().optional(),
+    image: z.string().optional(),
+    author: z.string().optional(),
+    categories: z.array(z.string()).default(["others"]),
+    draft: z.boolean().optional(),
+    featured: z.boolean().optional(),
+  }),
 });
-const learning = defineCollection({
-	type: 'content',
-	// Type-check frontmatter using a schema
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		// Transform string to Date object
-		pubDate: z.coerce.date(),
-		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string().optional(),
-	}),
+
+// Pages collection schema
+const pagesCollection = defineCollection({
+  schema: z.object({
+    id: z.string().optional(),
+    title: z.string(),
+    meta_title: z.string().optional(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    layout: z.string().optional(),
+    draft: z.boolean().optional(),
+  }),
 });
-export const collections = { blog, learning };
+
+// Export collections
+export const collections = {
+  blog: blogCollection,
+  pages: pagesCollection,
+};
