@@ -1,72 +1,119 @@
-# TAU Ideas On Chess
+<h1 align=center>Tau On Chess</h1>
+  <a href="https://github.com/maglor_elf/OnChess">
+    <img src="public\images\logo-on-chess-text.png" alt="Logo" >
+  </a>
+<p align=center>This is the public repository of the Tauideas website. Tauideas is a trademark without any commercial pourposes to show my little projects and learnings in different languages.</p>
+<h4 align="center">
+    <a target="_blank" href="https://github.com/maglor_elf/TauIdeas" rel="nofollow">Source Code</a>
+    ·
+    <a target="_blank" href="https://tauideas.tech" rel="nofollow">View website</a>
+    ·
+    <a target="_blank" href="https://github.com/maglor_elf/TauIdeas/issues" rel="nofollow">Report Bug</a>
+    ·
+    <a target="_blank" href="https://github.com/maglor_elf/TauIdeas/issues" rel="nofollow">Request Feature</a>
+  </p>
 
-Site of TauIdeas about Chess. These pages will be a good complement to the streams.
+</h2>
+<p align=center>
+  <a href="https://github.com/withastro/astro/releases/tag/astro%402.0.11" alt="Framework">
+    <img src="https://img.shields.io/static/v1?label=ASTRO&message=2.0&color=000&logo=astro" />
+  </a>
 
-##
+  <a href="https://github.com/maglorelf/TauIdeas/main/LICENSE">
+    <img src="https://img.shields.io/github/license/maglorelf/TauIdeas" alt="license"></a>
 
-```sh
-npm create astro@latest -- --template blog
+  <img src="https://img.shields.io/github/languages/code-size/maglorelf/TauIdeas" alt="code size">
+
+  <a href="https://github.com/maglorelf/TauIdeas/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/maglorelf/TauIdeas" alt="contributors"></a>
+</p>
+
+<!-- ABOUT THE PROJECT -->
+### Built With
+
+* [Astro](https://astro.build/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- installation -->
+## Installation
+
+After downloading the project, you have some prerequisites to install. Then you can run it on your localhost. You can view the package.json file to see which scripts are included.
+
+### Install prerequisites (once for a machine)
+
+- **Node Installation:** [Install node js](https://nodejs.org/en/download/) [Recommended LTS version]
+
+### Local setup
+
+After successfully installing those dependencies, open this template with any IDE [[VS Code](https://code.visualstudio.com/) recommended], and then open the internal terminal of IDM [vs code shortcut <code>ctrl/cmd+\`</code>]
+
+- Install dependencies
+
+```
+npm install
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+- Run locally
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+After that, it will open up a preview of the template in your default browser, watch for changes to source files, and live-reload the browser when changes are saved.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Production Build
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+After finishing all the customization, you can create a production build by running this command.
 
-Any static assets, like images, can be placed in the `public/` directory.
+```
+npm run build
+```
 
-## 🧞 Commands
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-All commands are run from the root of the project, from a terminal:
+## Roadmap
+- This is a little blog. In next few months more functionality will be added
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+See the [open issues](https://github.com/maglor_elf/TauIdeas/issues) for a full list of proposed features (and known issues).
 
-## 👀 Want to learn more?
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Contributing
 
-## Credit
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+You can use the structure of the project, but I the articles are by my property.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## License
+
+Copyright (c) 2024 - Present, Designed & Developed by [Marcos J. Martínez](https://tauideas.tech)
+
+**Code License:** Released under the [MIT](https://github.com/maglorelf/TauIdeas/main/LICENSE) license.
+
+Template based in [Pinwheel theme](https://github.com/themefisher/pinwheel-astro)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Contact
+Twitter - Marcos J. Martínez Ramos- [@maglor_elf](https://twitter.com/maglor_elf) 
+
+Linkedin - [Marcos J. Martínez Ramos](https://www.linkedin.com/in/marcos-javier-martinez-ramos/) 
+
+Project Repository: [https://github.com/maglorelf/OnChess](https://github.com/maglorelf/TauIdeas)
+
+Project Producion: [https://onchesss.tauideas.tech](https://onchess.tauideas.tech)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
