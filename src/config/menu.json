@@ -8,11 +8,7 @@
         {
           "name": "Career",
           "url": "/career"
-        },        
-        {
-          "name": "Integrations",
-          "url": "/integrations"
-        },
+        },            
         {
           "name": "Pricing",
           "url": "/pricing"
@@ -45,14 +41,7 @@
     },    
     {
       "name": "Clases",
-      "url": "",
-      "hasChildren": true,
-      "children": [       
-        {
-          "name": "Clase 1",
-          "url": "/clases/clase-1"
-        }
-      ]
+      "url": "/lessons"     
     }   
   ],
 

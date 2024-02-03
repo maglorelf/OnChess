@@ -3,11 +3,11 @@ import { humanize } from "@lib/utils/textConverter";
 import { marked } from "marked";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
-const IntegrateMedia = ({ integrations, categories }) => {
+const IntegrateMedia = ({ lessons, categories }) => {
   const [tab, setTab] = useState("");
   const filterPost = !tab
-    ? integrations
-    : integrations.filter((post) => post.data.categories.includes(tab));
+    ? lessons
+    : lessons.filter((post) => post.data.categories.includes(tab));
   return (
     <section className="section pt-0">
       <div className="container">
@@ -68,7 +68,7 @@ const IntegrateMedia = ({ integrations, categories }) => {
 
                 <a
                   className="group inline-flex items-center font-semibold text-dark hover:text-primary"
-                  href={`/integrations/${item.slug}`}
+                  href={`/lessons/${item.slug}`}
                 >
                   View integration
                   <AiOutlineArrowRight className="ml-1.5 text-xl font-bold duration-300 group-hover:ml-3" />
