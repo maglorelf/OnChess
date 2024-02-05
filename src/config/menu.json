@@ -1,7 +1,7 @@
 {
   "main": [
     { 
-      "name": "Home",
+      "name": "Inicio",
       "url": "/",
       "hasChildren": false,
       "children": [
@@ -40,7 +40,7 @@
       "url": "/blog"
     },    
     {
-      "name": "Clases",
+      "name": "Lecciones",
       "url": "/lessons"     
     }   
   ],
@@ -51,15 +51,15 @@
       "url": "/about"
     },
     {
-      "name": "Privacy policy",
+      "name": "Politica de privacidad",
       "url": "/privacy"
     },
     {
-      "name": "Terms of use",
+      "name": "Términos de uso",
       "url": "/terms-and-conditions"
     },
     {
-      "name": "Cookies Policy",
+      "name": "Política de cookies",
       "url": "/cookie_policy"
     }
   ]

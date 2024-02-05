@@ -21,7 +21,7 @@ const IntegrateMedia = ({ lessons, categories }) => {
                   } btn btn-sm cursor-pointer`}
                   onClick={() => setTab("")}
                 >
-                  All Categories
+                  Todas las categorías
                 </span>
               </li>
               {categories.map((category, i) => (
@@ -70,7 +70,7 @@ const IntegrateMedia = ({ lessons, categories }) => {
                   className="group inline-flex items-center font-semibold text-dark hover:text-primary"
                   href={`/lessons/${item.slug}`}
                 >
-                  View integration
+                  Ver lección
                   <AiOutlineArrowRight className="ml-1.5 text-xl font-bold duration-300 group-hover:ml-3" />
                 </a>
               </div>
