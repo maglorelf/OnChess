@@ -1,6 +1,6 @@
 ---
 title: "Terms & Condition Of Tauideas"
-excerpt: Donec sollicitudin molestie malesda. Donec sollitudin molestie male <br /> suada Mauris pellentesque nec egestas non nisi Cras
+excerpt: 
 draft: false
 ---
 
@@ -94,4 +94,4 @@ By continuing to access or use Our Service after those revisions become effectiv
 ## Contact Us
 If you have any questions about these Terms and Conditions, You can contact us:
 
-By email: info1.alquilala-tauideas@yahoo.com
+By email: hello@tauideas.tech

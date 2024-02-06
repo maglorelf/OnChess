@@ -4,13 +4,13 @@
   </a>
 <p align=center>This is the public repository of the Tauideas website. Tauideas is a trademark without any commercial pourposes to show my little projects and learnings in different languages.</p>
 <h4 align="center">
-    <a target="_blank" href="https://github.com/maglor_elf/TauIdeas" rel="nofollow">Source Code</a>
+    <a target="_blank" href="https://github.com/maglor_elf/OnChess" rel="nofollow">Source Code</a>
     ·
-    <a target="_blank" href="https://tauideas.tech" rel="nofollow">View website</a>
+    <a target="_blank" href="https://onchess.tauideas.tech" rel="nofollow">View website</a>
     ·
-    <a target="_blank" href="https://github.com/maglor_elf/TauIdeas/issues" rel="nofollow">Report Bug</a>
+    <a target="_blank" href="https://github.com/maglor_elf/OnChess/issues" rel="nofollow">Report Bug</a>
     ·
-    <a target="_blank" href="https://github.com/maglor_elf/TauIdeas/issues" rel="nofollow">Request Feature</a>
+    <a target="_blank" href="https://github.com/maglor_elf/OnChess/issues" rel="nofollow">Request Feature</a>
   </p>
 
 </h2>
@@ -19,13 +19,13 @@
     <img src="https://img.shields.io/static/v1?label=ASTRO&message=2.0&color=000&logo=astro" />
   </a>
 
-  <a href="https://github.com/maglorelf/TauIdeas/main/LICENSE">
-    <img src="https://img.shields.io/github/license/maglorelf/TauIdeas" alt="license"></a>
+  <a href="https://github.com/maglorelf/OnChess/main/LICENSE">
+    <img src="https://img.shields.io/github/license/maglorelf/OnChess" alt="license"></a>
 
-  <img src="https://img.shields.io/github/languages/code-size/maglorelf/TauIdeas" alt="code size">
+  <img src="https://img.shields.io/github/languages/code-size/maglorelf/OnChess" alt="code size">
 
-  <a href="https://github.com/maglorelf/TauIdeas/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/maglorelf/TauIdeas" alt="contributors"></a>
+  <a href="https://github.com/maglorelf/OnChess/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/maglorelf/OnChess" alt="contributors"></a>
 </p>
 
 <!-- ABOUT THE PROJECT -->
@@ -75,7 +75,7 @@ npm run build
 ## Roadmap
 - This is a little blog. In next few months more functionality will be added
 
-See the [open issues](https://github.com/maglor_elf/TauIdeas/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/maglor_elf/OnChess/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -99,9 +99,9 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Copyright (c) 2024 - Present, Designed & Developed by [Marcos J. Martínez](https://tauideas.tech)
+Copyright (c) 2024 - Present, Designed & Developed by [Marcos J. Martínez](https://onchess.tauideas.tech)
 
-**Code License:** Released under the [MIT](https://github.com/maglorelf/TauIdeas/main/LICENSE) license.
+**Code License:** Released under the [MIT](https://github.com/maglorelf/OnChess/main/LICENSE) license.
 
 Template based in [Pinwheel theme](https://github.com/themefisher/pinwheel-astro)
 
@@ -112,7 +112,7 @@ Twitter - Marcos J. Martínez Ramos- [@maglor_elf](https://twitter.com/maglor_el
 
 Linkedin - [Marcos J. Martínez Ramos](https://www.linkedin.com/in/marcos-javier-martinez-ramos/) 
 
-Project Repository: [https://github.com/maglorelf/OnChess](https://github.com/maglorelf/TauIdeas)
+Project Repository: [https://github.com/maglorelf/OnChess](https://github.com/maglorelf/OnChess)
 
 Project Producion: [https://onchesss.tauideas.tech](https://onchess.tauideas.tech)
 
