@@ -36,6 +36,7 @@ export default defineConfig({
         "@shortcodes/Badge",
         "@shortcodes/ContentBlock",
         "@shortcodes/Changelog",
+        "react-icons/ai",
       ],
     }),
     mdx(),
