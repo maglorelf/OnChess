@@ -13,8 +13,9 @@ Desde los 14 años dando clases de ajedrez. Durante muchos años presidente de l
 - [Lichess](https://lichess.org/@/maglor_elf)
 
 ## Últimos resultados OTB
+- [Torneo de XXX Aniversario CIDU 1 Maio 2024 (2º)](https://www.xadrezuniversitario.org/2024/05/resultados-torneo-dia-1.html)
 - [Torneo de Entroido Absoluto 2024 (1º)](https://www.palaestra.eu/2024/02/resultados-torneo-entroido-absoluto.html)
-- [Provincial A Coruña 2024 (31º)](https://info64.org/provincial-a-coruna-absoluto)
+- [Provincial Absoluto A Coruña 2024 (31º)](https://info64.org/provincial-a-coruna-absoluto)
 - [XXII Nadal de Carral (3º)](https://info64.org/xxii-nadal-en-carral/standings)
 - [LXXV Torneo de Navidad Artesanos (1º)](https://www.xadrecista.eu/2023/12/resultados-do-lxxv-torneo-de-navidad.html)
 - [XII Torneo de Nadal de Xadrez (1º)](https://www.deporcultura.eu/2023/12/resultados-torneo-de-nadal.html)
