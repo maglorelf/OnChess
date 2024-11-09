@@ -5,22 +5,34 @@ draft: false
 ---
  
 Jugador de aficionado de ajedrez desde hace más de 35 años en la zona de A Coruña (España).
- 
-Desde los 14 años dando clases de ajedrez. Durante muchos años presidente de la Escola Técnica de Xadrez da Coruña.
+
+
+Actualmente jugando con el Club Xadrez das Mariñas (Cambre, A Coruña) con el que además colabora en la organización de eventos.
+
+La actividad docente en ajedrez la lleva impartiendo desde los catorce años en colegios y clubes.
+Actualmente está colaborando con:
+* Coruña British International School: Clases de iniciación de ajedrez
+* Xadrez das Mariñas - Xadrez e Memoria: Clases de iniciación para personas adultas con el objetivo que el ajedrez sirva para manener la mente activa.
+* Xadrez das Mariñas - Curso de Xadrez: Clases avanzadas para jugadores de club
  
 ## Perfiles online
 - [FIDE](https://ratings.fide.com/profile/22211349")
 - [Lichess](https://lichess.org/@/maglor_elf)
 
 ## Últimos resultados OTB
+### 2024
+- [Aniversario INCUDE (4º)](https://info64.org/aniversario-incude/standings)
+- [XV Concello de Rianxo (28º)](https://info64.org/xv-concello-de-rianxo/standings)
+- [XV Torneo San Roque (13º)](https://info64.org/xv-torneo-san-roque/standings)
 - [XVII Memorial Miro (19º)](https://info64.org/xvii-memorial-miro/standings)
 - [I Cto. Xadrez Blitz XDM (3º)](https://info64.org/i-cto-xadrez-blitz-xdm/standings)
 - [XIX Ludo Lostrego - Torneo Merino (2º)](https://info64.org/xix-ludo-lostrego-torneo-merino/standings)
 - [V Liga Xadrez da Mariñas por Equipos (Xadrez das Mariñas) (1º)](https://www.xn--xadrezdasmarias-brb.org/2024/06/resultados-v-liga-xadrez-das-marinas.html)
-- [Liga Gallega 2 División 2024 (Xadrez das Mariñas) (1ª)](https://www.xn--xadrezdasmarias-brb.org/2024/05/11-xornada-de-liga.html)
+- [Liga Gallega 2 División 2024 (Xadrez das Mariñas) (1º)](https://www.xn--xadrezdasmarias-brb.org/2024/05/11-xornada-de-liga.html)
 - [Torneo de XXX Aniversario CIDU 1 Maio 2024 (2º)](https://www.xadrezuniversitario.org/2024/05/resultados-torneo-dia-1.html)
 - [Torneo de Entroido Absoluto 2024 (1º)](https://www.palaestra.eu/2024/02/resultados-torneo-entroido-absoluto.html)
 - [Provincial Absoluto A Coruña 2024 (31º)](https://info64.org/provincial-a-coruna-absoluto/standings)
+### 2023
 - [XXII Nadal de Carral (3º)](https://info64.org/xxii-nadal-en-carral/standings)
 - [LXXV Torneo de Navidad Artesanos (1º)](https://www.xadrecista.eu/2023/12/resultados-do-lxxv-torneo-de-navidad.html)
 - [XII Torneo de Nadal de Xadrez (1º)](https://www.deporcultura.eu/2023/12/resultados-torneo-de-nadal.html)
