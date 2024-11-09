@@ -1,8 +1,10 @@
 <h1 align=center>Tau On Chess</h1>
-  <a href="https://github.com/maglor_elf/OnChess">
-    <img src="public\images\logo-on-chess-text.png" alt="Logo" >
+<div align=center>
+  <a  href="https://github.com/maglor_elf/OnChess">
+    <img src="public\images\logo-on-chess-text.png" alt="Logo" width="69" height="85">
   </a>
-<p align=center>This is the public repository of the Tauideas website. Tauideas is a trademark without any commercial pourposes to show my little projects and learnings in different languages.</p>
+</div>
+<p align=center>This is the public repository of the Tauideas website. Tauideas is a trademark without any commercial purposes to show my little projects and learnings in different languages.</p>
 <h4 align="center">
     <a target="_blank" href="https://github.com/maglor_elf/OnChess" rel="nofollow">Source Code</a>
     ·
@@ -99,7 +101,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Copyright (c) 2024 - Present, Designed & Developed by [Marcos J. Martínez](https://onchess.tauideas.tech)
+Copyright (c) 2024 - Present, Designed & Developed by [Marcos J. Martinez](https://onchess.tauideas.tech)
 
 **Code License:** Released under the [MIT](https://github.com/maglorelf/OnChess/main/LICENSE) license.
 
@@ -108,12 +110,12 @@ Template based in [Pinwheel theme](https://github.com/themefisher/pinwheel-astro
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contact
-Twitter - Marcos J. Martínez Ramos- [@maglor_elf](https://twitter.com/maglor_elf) 
+Twitter - Marcos J. Martinez Ramos- [@maglor_elf](https://twitter.com/maglor_elf) 
 
-Linkedin - [Marcos J. Martínez Ramos](https://www.linkedin.com/in/marcos-javier-martinez-ramos/) 
+Linkedin - [Marcos J. Martinez Ramos](https://www.linkedin.com/in/marcos-javier-martinez-ramos/) 
 
 Project Repository: [https://github.com/maglorelf/OnChess](https://github.com/maglorelf/OnChess)
 
-Project Producion: [https://onchesss.tauideas.tech](https://onchess.tauideas.tech)
+Project Production: [https://onchesss.tauideas.tech](https://onchess.tauideas.tech)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
