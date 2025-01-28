@@ -20,7 +20,15 @@ Actualmente está colaborando con:
 - [Lichess](https://lichess.org/@/maglor_elf)
 
 ## Últimos resultados OTB
+
+### 2025
+- [I Aberto Xadrez Lostrego de Vilaboa por Equipos (Alexandre Bóveda A) (1º)](https://info64.org/team/i-aberto-xadrez-lostrego-de-vilaboa-por-equipos/standings)
+
 ### 2024
+- [II ERLAC Clasico Sub2400 (2º)](https://info64.org/ii-erlac-clasico-sub2400/standings)
+- [LXXVI TORNEO NADAL (23º)](https://info64.org/lxxvi-torneo-nadal/standings)
+- [II CTO BLITZ XDM (8º)](https://info64.org/ii-cto-blitz-xdm/standings)
+- [II Open Internacional Jose Antonio Ferreno (31º)](https://info64.org/ii-open-internacional-jose-antonio-ferreno/standings)
 - [Aniversario INCUDE (4º)](https://info64.org/aniversario-incude/standings)
 - [XV Concello de Rianxo (28º)](https://info64.org/xv-concello-de-rianxo/standings)
 - [XV Torneo San Roque (13º)](https://info64.org/xv-torneo-san-roque/standings)
@@ -32,6 +40,7 @@ Actualmente está colaborando con:
 - [Torneo de XXX Aniversario CIDU 1 Maio 2024 (2º)](https://www.xadrezuniversitario.org/2024/05/resultados-torneo-dia-1.html)
 - [Torneo de Entroido Absoluto 2024 (1º)](https://www.palaestra.eu/2024/02/resultados-torneo-entroido-absoluto.html)
 - [Provincial Absoluto A Coruña 2024 (31º)](https://info64.org/provincial-a-coruna-absoluto/standings)
+
 ### 2023
 - [XXII Nadal de Carral (3º)](https://info64.org/xxii-nadal-en-carral/standings)
 - [LXXV Torneo de Navidad Artesanos (1º)](https://www.xadrecista.eu/2023/12/resultados-do-lxxv-torneo-de-navidad.html)
