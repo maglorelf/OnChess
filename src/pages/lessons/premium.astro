@@ -1,0 +1,102 @@
+---
+import Base from "@layouts/Base.astro";
+import PageHeader from "@layouts/components/PageHeader.astro";
+import ChessLesson from "@layouts/function-components/ChessLesson.jsx";
+import { protectRoute, USER_ROLES } from "@lib/utils/middleware";
+import fs from 'fs';
+import path from 'path';
+
+// Access control - protect this route for premium users and admins
+const authorization = await protectRoute(Astro.request, [USER_ROLES.PREMIUM, USER_ROLES.ADMIN]);
+
+if (!authorization.isAllowed) {
+  return Astro.redirect(authorization.redirect);
+}
+
+// Load a sample PGN file from public/docs directory
+const pgnFilePath = path.join(process.cwd(), 'public', 'docs', 'lectura2_partidas.pgn');
+let pgnContent = '';
+
+try {
+  pgnContent = fs.readFileSync(pgnFilePath, 'utf-8');
+} catch (error) {
+  console.error('Error reading PGN file:', error);
+  pgnContent = '1. e4 e5 2. Nf3 Nc6 3. Bb5';  // Fallback content
+}
+
+// Define premium lessons
+const premiumLessons = [
+  {
+    title: "Advanced Tactics: Fork and Discovery",
+    description: "Learn how to use fork and discovery tactical motifs to gain material advantage.",
+    content: "In this lesson, we'll explore advanced tactical motifs that can help you gain material advantage. The position shown demonstrates a powerful fork opportunity.",
+    position: "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1",
+    pgn: "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Na5 6. Bb5+ c6 7. dxc6 bxc6 8. Bd3",
+    difficulty: "intermediate",
+    tags: ["tactics", "fork", "discovery"]
+  },
+  {
+    title: "Sicilian Defense: Najdorf Variation",
+    description: "Master the complex positions arising from the Najdorf Variation of the Sicilian Defense.",
+    content: "The Najdorf Variation is one of the sharpest and most complex openings in chess. It leads to positions with imbalanced material and dynamic play.",
+    position: "rnbqkb1r/1p2pppp/p2p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq - 0 6",
+    pgn: pgnContent.substring(0, 500),  // Use first part of the PGN file
+    difficulty: "advanced",
+    tags: ["opening", "sicilian", "najdorf"]
+  },
+  {
+    title: "Endgame Study: Rook vs Pawns",
+    description: "Critical techniques for handling rook endgames against connected passed pawns.",
+    position: "8/8/8/2pk4/8/2R5/1P3K2/8 w - - 0 1",
+    content: "Rook endgames are among the most common in chess. This lesson focuses on the techniques needed to handle a rook against connected passed pawns.",
+    pgn: "1. Rc5+ Kd4 2. Rc7 Ke5 3. Rc5+ Kd4 4. Ke2 Kd5 5. Kd3 Kd6 6. Kd4 Kd7 7. Kd5 Kd8 8. Rc6",
+    difficulty: "expert",
+    tags: ["endgame", "rook", "pawns"]
+  }
+];
+---
+
+<Base>
+  <section class="section">
+    <PageHeader title="Premium Chess Lessons" />
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-10">
+          <div class="premium-badge mb-8 inline-block rounded-full bg-gradient-to-r from-yellow-300 to-yellow-500 px-4 py-1 text-center text-sm font-medium text-dark">
+            Premium Content
+          </div>
+          
+          <div class="content mb-10 text-left">
+            <h2>Welcome to Premium Chess Lessons</h2>
+            <p>
+              These advanced lessons are available exclusively to our premium members. 
+              Here you'll find in-depth analysis of complex positions, advanced tactical patterns, 
+              and comprehensive opening preparation.
+            </p>
+          </div>
+          
+          <div class="lessons-container">
+            {premiumLessons.map(lesson => (
+              <ChessLesson 
+                client:load
+                title={lesson.title}
+                description={lesson.description}
+                content={lesson.content}
+                position={lesson.position}
+                pgn={lesson.pgn}
+                difficulty={lesson.difficulty}
+                tags={lesson.tags}
+              />
+            ))}
+          </div>
+          
+          <div class="mt-10 text-center">
+            <p class="text-sm">
+              New premium lessons are added weekly. Check back often for more content!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

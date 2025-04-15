@@ -1,0 +1,48 @@
+---
+import Base from "@layouts/Base.astro";
+import { auth } from "@lib/utils/middleware";
+
+// Check if user is authenticated
+const { user, isAuthenticated } = await auth(Astro.request);
+---
+
+<Base>
+  <section class="section pt-0">
+    <div class="container">
+      <div class="flex min-h-[40vh] items-center justify-center">
+        <div class="text-center">
+          <img
+            class="mx-auto mb-6 w-full max-w-[150px]"
+            src="/images/pawn_b_blue.png"
+            alt="OnChess Logo"
+          />
+          <h1 class="mb-4">Access Restricted</h1>
+          <div class="content">
+            <p>
+              This content requires a premium membership to access.
+            </p>
+            {isAuthenticated ? (
+              <div class="mt-8">
+                <p class="mb-4">
+                  Your current role does not have permission to view this content.
+                </p>
+                <div class="flex justify-center gap-4">
+                  <a href="/pricing" class="btn btn-primary">Upgrade to Premium</a>
+                  <a href="/" class="btn btn-outline-primary">Return Home</a>
+                </div>
+              </div>
+            ) : (
+              <div class="mt-8">
+                <p class="mb-4">Please sign in to access this content.</p>
+                <div class="flex justify-center gap-4">
+                  <a href="/signin" class="btn btn-primary">Sign In</a>
+                  <a href="/" class="btn btn-outline-primary">Return Home</a>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,10 +1,10 @@
 ---
-
 import Base from "@layouts/Base.astro";
 import Banner from "@layouts/components/Banner.astro";
 import KeyFeatures from "@layouts/components/KeyFeatures.astro";
 import Testimonial from "@layouts/components/Testimonial.astro";
 import Service from "@layouts/components/Service.astro";
+import ChessBoard from "@layouts/function-components/ChessBoard.jsx";
 import Cta from "@layouts/partials/Cta.astro";
 import { getEntryBySlug } from "astro:content";
 import Blogs from "@components/Blogs.astro";
@@ -12,6 +12,11 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import config from "@config/config.json";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
+import { auth, USER_ROLES } from "@lib/utils/middleware";
+
+// Get authenticated user info
+const { user, isAuthenticated } = await auth(Astro.request);
+const isPremium = isAuthenticated && (user?.role === USER_ROLES.PREMIUM || user?.role === USER_ROLES.ADMIN);
 
 const homepage = await getEntryBySlug("homepage", "index");
 const { banner, key_features, service, testimonial } = homepage.data;
@@ -19,32 +24,161 @@ const { blog_folder } = config.settings;
 const posts = await getSinglePage(blog_folder);
 const sortedPosts = sortByDate(posts);
 const currentPosts = sortedPosts.slice(0, 3);
+
+// Sample chess positions for the homepage
+const famousTactics = [
+  {
+    name: "The Opera Game (Paul Morphy)",
+    position: "r1bk2nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w - - 1 23",
+    description: "One of the most famous games in chess history"
+  }
+];
 ---
 
 <Base>
-  <section class="section">
+  <!-- Hero Section -->
+  <section class="pt-16 pb-8">
     <div class="container">
-      <Blogs posts={currentPosts} />
-      <div class="flex justify-end">
-
-        <a
-        class="text-primary inline-flex items-center font-semibold"
-        href={`/blog`}
-        >
-        Leer más
-        <AiOutlineArrowRight className="ml-1.5 text-xl font-bold" />
-      </a>
-    </div>
+      <div class="row items-center">
+        <div class="lg:col-6">
+          <h1 class="mb-4">
+            Improve Your Chess Skills with <span class="text-primary">OnChess</span>
+          </h1>
+          <p class="mb-8 text-lg">
+            Interactive lessons, tactical puzzles, and premium content to help you advance your chess game.
+          </p>
+          
+          <div class="flex flex-wrap gap-4">
+            {!isAuthenticated ? (
+              <>
+                <a href="/signin" class="btn btn-primary">Sign In</a>
+                <a href="/signup" class="btn btn-outline-primary">Create Account</a>
+              </>
+            ) : isPremium ? (
+              <a href="/lessons/premium" class="btn btn-primary">Premium Lessons</a>
+            ) : (
+              <a href="/pricing" class="btn btn-primary">Upgrade To Premium</a>
+            )}
+            <a href="/lessons" class="btn btn-outline-primary">Start Learning</a>
+          </div>
+        </div>
+        <div class="mt-8 lg:col-6 lg:mt-0">
+          <div class="chess-display rounded-lg overflow-hidden border shadow-lg">
+            <ChessBoard 
+              client:load
+              position={famousTactics[0].position}
+              interactive={false}
+              customStyles={{ maxWidth: '100%' }}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-  <!-- banner -->
-  <!-- <Banner banner={banner} /> -->
-  <!-- key features -->
-  <!-- <KeyFeatures key_features={key_features} /> -->
-  <!-- service -->
-  <!-- <Service service={service} /> -->
-  <!-- testimonial -->
-  <!-- <Testimonial testimonial={testimonial} /> -->
-  <!-- call to action -->
-  <!-- <Cta /> -->
+
+  <!-- Features Section -->
+  <section class="section bg-theme-light dark:bg-darkmode-theme-light">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="mb-8 text-center lg:col-8">
+          <h2>Why Choose OnChess</h2>
+          <p class="mt-4">
+            OnChess offers a comprehensive chess learning experience for players of all levels
+          </p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="md:col-6 lg:col-4">
+          <div class="rounded-lg bg-white p-6 shadow dark:bg-darkmode-theme-dark">
+            <div class="mb-4 inline-block rounded bg-primary/10 p-3 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h3 class="h4 mb-3">Interactive Lessons</h3>
+            <p>
+              Learn chess concepts with our interactive diagrams and detailed explanations.
+            </p>
+          </div>
+        </div>
+        
+        <div class="mt-6 md:col-6 md:mt-0 lg:col-4">
+          <div class="rounded-lg bg-white p-6 shadow dark:bg-darkmode-theme-dark">
+            <div class="mb-4 inline-block rounded bg-primary/10 p-3 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+            </div>
+            <h3 class="h4 mb-3">Progressive Learning</h3>
+            <p>
+              Content tailored for beginners, intermediate and advanced players.
+            </p>
+          </div>
+        </div>
+        
+        <div class="mt-6 lg:col-4 lg:mt-0">
+          <div class="rounded-lg bg-white p-6 shadow dark:bg-darkmode-theme-dark">
+            <div class="mb-4 inline-block rounded bg-primary/10 p-3 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="h4 mb-3">Premium Content</h3>
+            <p>
+              Access advanced strategies, opening analysis, and expert insights with our premium membership.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Blog Posts -->
+  <section class="section">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="mb-8 text-center lg:col-8">
+          <h2>Latest Chess Articles</h2>
+          <p class="mt-4">
+            Read our latest articles on chess strategy, tournaments, and news
+          </p>
+        </div>
+      </div>
+      
+      <Blogs posts={currentPosts} />
+      
+      <div class="flex justify-end mt-8">
+        <a
+          class="text-primary inline-flex items-center font-semibold"
+          href={`/blog`}
+        >
+          Read More Articles
+          <AiOutlineArrowRight className="ml-1.5 text-xl font-bold" />
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="section bg-theme-light dark:bg-darkmode-theme-light">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-10">
+          <div class="row items-center justify-between rounded-lg bg-white p-8 shadow dark:bg-darkmode-theme-dark">
+            <div class="md:col-7">
+              <h2 class="h3 mb-4">Ready to improve your chess?</h2>
+              <p class="mb-6">
+                Join OnChess today and get access to our interactive lessons, tactical puzzles, and advanced chess content.
+              </p>
+              <a href={isAuthenticated ? "/lessons" : "/signup"} class="btn btn-primary">{isAuthenticated ? "Start Learning" : "Join Now"}</a>
+            </div>
+            <div class="mt-8 md:col-4 md:mt-0">
+              <img src="/images/chessboard.svg" alt="Chess" class="w-full" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Base>

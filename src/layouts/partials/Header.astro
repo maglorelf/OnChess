@@ -1,6 +1,8 @@
 ---
 import Logo from "@components/Logo.astro";
 import menu from "@config/menu.json";
+import UserProfile from "@layouts/function-components/UserProfile.jsx";
+import { auth, USER_ROLES } from "@lib/utils/middleware";
 
 export interface ChildNavigationLink {
   name: string;
@@ -16,6 +18,48 @@ export interface NavigationLink {
 
 const { main }: { main: NavigationLink[] } = menu;
 const { pathname } = Astro.url;
+
+// Check if user is authenticated
+const { user, isAuthenticated } = await auth(Astro.request);
+const isPremium = isAuthenticated && (user?.role === USER_ROLES.PREMIUM || user?.role === USER_ROLES.ADMIN);
+
+// Add lessons link to menu for authenticated users
+const extendedMenu = [...main];
+if (isAuthenticated) {
+  // Find if lessons already exists
+  const lessonsMenuIndex = extendedMenu.findIndex(item => item.name === "Lessons");
+  
+  if (lessonsMenuIndex === -1) {
+    // Add lessons menu if it doesn't exist
+    extendedMenu.push({
+      name: "Lessons",
+      url: "/lessons",
+      hasChildren: true,
+      children: [
+        {
+          name: "All Lessons",
+          url: "/lessons"
+        },
+        ...(isPremium ? [{
+          name: "Premium Lessons",
+          url: "/lessons/premium"
+        }] : [])
+      ]
+    });
+  } else if (isPremium) {
+    // Add premium lessons to existing menu
+    const premiumLessonExists = extendedMenu[lessonsMenuIndex].children?.some(
+      child => child.url === "/lessons/premium"
+    );
+    
+    if (!premiumLessonExists && extendedMenu[lessonsMenuIndex].children) {
+      extendedMenu[lessonsMenuIndex].children.push({
+        name: "Premium Lessons",
+        url: "/lessons/premium"
+      });
+    }
+  }
+}
 ---
 
 <header class="header">
@@ -55,7 +99,7 @@ const { pathname } = Astro.url;
       class="navbar-nav order-3 hidden w-full lg:order-1 lg:flex lg:w-auto lg:space-x-2"
     >
       {
-        main.map((menu) => (
+        extendedMenu.map((menu) => (
           <>
             {menu.hasChildren ? (
               <li
@@ -113,26 +157,48 @@ const { pathname } = Astro.url;
           </>
         ))
       }
-      <!-- <li class="nav-item mt-2 lg:hidden">
-        <a class="btn btn-white btn-sm border-border" href="/signin">
-          Sign Up Now</a
-        >
-      </li> -->
+      <li class="nav-item mt-2 lg:hidden">
+        {isAuthenticated ? (
+          <div class="px-4 py-3">
+            <UserProfile client:load user={user} />
+          </div>
+        ) : (
+          <a class="btn btn-white btn-sm border-border" href="/signin">Sign In</a>
+        )}
+      </li>
     </ul>
-    <!-- <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
-      <a class="btn btn-white btn-sm" href="/signin"> Sign Up Now</a>
-    </div> -->
+    <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
+      {isAuthenticated ? (
+        <div class="relative group">
+          <div class="flex items-center cursor-pointer gap-2">
+            <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+              {user.username.charAt(0).toUpperCase()}
+            </div>
+            <span>{user.username}</span>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+            </svg>
+          </div>
+          <div class="absolute right-0 mt-2 w-64 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300">
+            <UserProfile client:load user={user} />
+          </div>
+        </div>
+      ) : (
+        <a class="btn btn-primary btn-sm" href="/signin">Sign In</a>
+      )}
+    </div>
   </nav>
 </header>
 <script is:inline>
-  const button = document.getElementById("dropdown-button");
-  if(button){
-
+  const buttons = document.querySelectorAll('[id="dropdown-button"]');
+  buttons.forEach(button => {
     button.addEventListener("click", () => {
-      const dropdown = document.getElementById("dropdown");
-      dropdown.classList.toggle(dropdown.style === "hidden" ? "block" : "hidden");
+      const dropdown = button.querySelector('[id="dropdown"]');
+      if (dropdown) {
+        dropdown.classList.toggle("hidden");
+      }
     });
-  } 
+  });
 
   //sticky header
   const header = document.querySelector(".header");

@@ -1,39 +1,92 @@
 ---
-import PageHeader from "@components/PageHeader.astro";
-import Shape from "@components/Shape.astro";
 import Base from "@layouts/Base.astro";
-import IntegrateMedia from "@layouts/function-components/IntegrateMedia";
-import Cta from "@layouts/partials/Cta.astro";
-import { getSinglePage } from "@lib/contentParser.astro";
-import { getTaxonomy } from "@lib/taxonomyParser.astro";
-import { getEntryBySlug } from "astro:content";
-const lessonsIndex = await getEntryBySlug<any, string>(
-  "lessons",
-  "-index"
-);
-const categories = await getTaxonomy("lessons", "categories");
-const lessons = await getSinglePage("lessons");
-const page_data = {
-  ...lessonsIndex.data,
-  content: lessonsIndex.body,
-};
+import PageHeader from "@layouts/components/PageHeader.astro";
+import ChessLesson from "@layouts/function-components/ChessLesson.jsx";
+import { auth, USER_ROLES } from "@lib/utils/middleware";
+
+// Check if user is authenticated, but don't restrict access
+const { user, isAuthenticated } = await auth(Astro.request);
+const isPremium = isAuthenticated && (user.role === USER_ROLES.PREMIUM || user.role === USER_ROLES.ADMIN);
+
+// Basic lessons available to all users
+const basicLessons = [
+  {
+    title: "Chess Fundamentals: Basic Checkmates",
+    description: "Learn the fundamental checkmate patterns that every chess player should know.",
+    content: "In this lesson, we'll explore the most common checkmate patterns that every chess player should know, starting with the basic king and queen checkmate.",
+    position: "4k3/8/3K4/8/8/8/8/3Q4 w - - 0 1",
+    pgn: "1. Qd3 Kf8 2. Qf5+ Kg7 3. Ke7 Kg8 4. Qf7+ Kh8 5. Qh7#",
+    difficulty: "beginner",
+    tags: ["fundamentals", "checkmate", "endgame"]
+  },
+  {
+    title: "Opening Principles",
+    description: "Master the essential principles that govern successful opening play.",
+    content: "The opening phase of a chess game sets the foundation for the middlegame and endgame. In this lesson, we'll cover the core principles that will help you develop your pieces efficiently.",
+    position: "start",
+    pgn: "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5",
+    difficulty: "beginner",
+    tags: ["opening", "principles", "development"]
+  }
+];
 ---
 
-<Base
-  title={lessonsIndex.data.title}
-  meta_title={lessonsIndex.data.meta_title}
-  description={lessonsIndex.data.description}
-  image={lessonsIndex.data.image}
->
-  <Shape />
-  <section class="page-hero pb-14 pt-16">
+<Base>
+  <section class="section">
+    <PageHeader title="Chess Lessons" />
     <div class="container">
-      <PageHeader page_data={page_data} />
+      <div class="row justify-center">
+        <div class="lg:col-10">
+          <div class="content mb-10 text-center">
+            <h2>Improve Your Chess Skills</h2>
+            <p>
+              Welcome to OnChess lessons! Here you'll find free lessons to help improve your chess skills.
+              {!isAuthenticated && 
+                <span>
+                  <a href="/signin" class="text-primary">Sign in</a> to track your progress and access more features.
+                </span>
+              }
+              {isAuthenticated && !isPremium && 
+                <span>
+                  Upgrade to <a href="/pricing" class="text-primary">Premium</a> to access our advanced lessons.
+                </span>
+              }
+              {isPremium && 
+                <span>
+                  As a Premium member, you can also access our <a href="/lessons/premium" class="text-primary">premium lessons</a>.
+                </span>
+              }
+            </p>
+          </div>
+
+          {isPremium && (
+            <div class="mb-10 rounded-lg bg-gradient-to-r from-yellow-50 to-yellow-100 p-6 border border-yellow-200 dark:from-yellow-900/20 dark:to-yellow-800/20 dark:border-yellow-800/30">
+              <h3 class="text-lg font-bold mb-2">Premium Content Available</h3>
+              <p class="mb-4">
+                Thank you for being a premium member! You now have access to our advanced chess content.
+              </p>
+              <a href="/lessons/premium" class="btn btn-sm btn-primary">
+                Access Premium Lessons
+              </a>
+            </div>
+          )}
+          
+          <div class="lessons-container">
+            {basicLessons.map(lesson => (
+              <ChessLesson 
+                client:load
+                title={lesson.title}
+                description={lesson.description}
+                content={lesson.content}
+                position={lesson.position}
+                pgn={lesson.pgn}
+                difficulty={lesson.difficulty}
+                tags={lesson.tags}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-  <IntegrateMedia
-    client:load
-    lessons={lessons}
-    categories={categories}
-  />
 </Base>
