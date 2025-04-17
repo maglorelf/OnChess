@@ -19,37 +19,48 @@ export default function BlogPreview({ title, date, excerpt, slug, coverImage }) 
   };
 
   return (
-    <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-      <div className="relative h-48 w-full">
+    <div className="saas-card hover:shadow-xl group">
+      <div className="relative h-48 w-full overflow-hidden">
         {coverImage && !imageError ? (
           <Image 
             src={coverImage} 
             alt={`Cover image for ${title}`}
             fill
             style={{ objectFit: 'cover' }}
-            className="transition-transform duration-300 hover:scale-105"
+            className="transition-transform duration-500 group-hover:scale-105"
             onError={() => setImageError(true)}
           />
         ) : (
           <PlaceholderImage 
             text={title}
-            bgColor={slug.includes('chess-strategies') ? '#3a506b' : '#1b4332'} 
+            bgColor={slug.includes('chess-strategies') ? '#3182ce' : '#6b46c1'} 
           />
         )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       
-      <div className="p-4">
-        <p className="text-sm text-gray-500 dark:text-gray-400">{formatDate(date)}</p>
-        <Link href={`/blog/${slug}`} className="hover:underline">
-          <h3 className="text-xl font-bold mt-1 mb-2">{title}</h3>
+      <div className="p-6">
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          {formatDate(date)}
+        </div>
+        
+        <Link href={`/blog/${slug}`} className="group-hover:text-primary transition-colors">
+          <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{title}</h3>
         </Link>
-        <p className="text-gray-600 dark:text-gray-300 line-clamp-3">{excerpt}</p>
+        
+        <p className="text-gray-600 dark:text-gray-300 line-clamp-3 mb-4">{excerpt}</p>
         
         <Link 
           href={`/blog/${slug}`}
-          className="mt-4 inline-block text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+          className="inline-flex items-center font-medium text-primary hover:text-primary-dark transition-colors"
         >
-          Read More →
+          Read Article
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
         </Link>
       </div>
     </div>
