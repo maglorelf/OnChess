@@ -37,12 +37,14 @@ export default function Home() {
               </div>
             </div>
             <div className="md:w-1/2 flex justify-center">
-              <div className="relative w-full max-w-md aspect-square">
-                <PlaceholderImage 
-                  text="Chess Hero" 
-                  bgColor="#2c3e50"
-                  textColor="#ffffff"
-                  className="rounded-lg shadow-lg"
+              <div className="relative w-full max-w-md">
+                <Image
+                  src="/logo-on-chess-text.png"
+                  alt="OnChess Logo"
+                  width={400}
+                  height={400}
+                  className="object-contain"
+                  priority
                 />
               </div>
             </div>
