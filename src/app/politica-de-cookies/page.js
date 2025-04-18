@@ -13,7 +13,7 @@ export default function CookiePolicyPage() {
         
         <div className="prose dark:prose-invert max-w-none">
           <p className="mb-4">
-            Última actualización: 15 de abril de 2025
+            Última actualización: 18 de abril de 2025
           </p>
 
           <p className="mb-4">
@@ -29,45 +29,42 @@ export default function CookiePolicyPage() {
             a proporcionar una mejor experiencia de usuario, a entender cómo funciona el sitio web y a analizar qué funciona y dónde necesita mejoras.
           </p>
 
-          <h2 className="text-2xl font-semibold mt-8 mb-4">¿Cómo utilizamos las Cookies?</h2>
+          <h2 className="text-2xl font-semibold mt-8 mb-4">Uso Actual de Cookies</h2>
           <p className="mb-4">
-            Como la mayoría de los servicios en línea, nuestro sitio web utiliza cookies propias y de terceros para varios propósitos. Las cookies propias 
-            son principalmente necesarias para que el sitio web funcione correctamente, y no recopilan ninguno de tus datos personales identificables.
+            Actualmente, OnChess utiliza un número limitado de cookies técnicas necesarias para el funcionamiento del sitio. Estas incluyen:
           </p>
+          <ul className="list-disc pl-6 mb-6 space-y-2">
+            <li>Cookies técnicas para el correcto funcionamiento de Next.js (el framework que utiliza nuestra web)</li>
+            <li>Cookies de sesión (si decides registrarte o iniciar sesión)</li>
+          </ul>
           <p className="mb-4">
-            Las cookies de terceros utilizadas en nuestro sitio web son principalmente para entender cómo funciona el sitio web, cómo interactúas con nuestro sitio web, 
-            mantener nuestros servicios seguros, proporcionar anuncios que sean relevantes para ti, y en general proporcionarte una mejor y mejorada experiencia de usuario 
-            y ayudar a acelerar tus futuras interacciones con nuestro sitio web.
+            No utilizamos actualmente cookies de rastreo, publicidad o análisis de terceros. Si esto cambiara en el futuro, actualizaremos esta política y te solicitaremos tu consentimiento antes de implementar dichas cookies.
           </p>
 
-          <h2 className="text-2xl font-semibold mt-8 mb-4">Tipos de Cookies que utilizamos</h2>
-          
-          <h3 className="text-xl font-semibold mt-6 mb-2">Cookies Esenciales</h3>
+          <h2 className="text-2xl font-semibold mt-8 mb-4">Posibles Cookies Futuras</h2>
           <p className="mb-4">
-            Algunas cookies son esenciales para que puedas experimentar la funcionalidad completa de nuestro sitio. Nos permiten mantener las sesiones de usuario 
-            y prevenir cualquier amenaza de seguridad. No recopilan ni almacenan ninguna información personal.
+            En el futuro, podríamos implementar:
           </p>
           
           <h3 className="text-xl font-semibold mt-6 mb-2">Cookies de Estadísticas</h3>
           <p className="mb-4">
-            Estas cookies almacenan información como el número de visitantes del sitio web, el número de visitantes únicos, qué páginas del sitio web han sido visitadas, 
-            la fuente de la visita, etc. Estos datos nos ayudan a entender y analizar qué tan bien funciona el sitio web y dónde necesita mejoras.
+            Estas cookies almacenarían información como el número de visitantes del sitio web, qué páginas han sido visitadas, 
+            la fuente de la visita, etc. Estos datos nos ayudarían a entender y analizar qué tan bien funciona el sitio web y dónde necesita mejoras.
           </p>
           
           <h3 className="text-xl font-semibold mt-6 mb-2">Cookies de Marketing</h3>
           <p className="mb-4">
-            Nuestro sitio web puede mostrar anuncios. Estas cookies se utilizan para personalizar los anuncios que te mostramos para que sean significativos para ti. 
-            Estas cookies también nos ayudan a hacer un seguimiento de la eficiencia de estas campañas publicitarias.
+            Si en el futuro nuestro sitio web muestra anuncios, estas cookies se utilizarían para personalizar los anuncios que te mostramos para que sean relevantes.
           </p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Control de tus preferencias de Cookies</h2>
           <p className="mb-4">
-            Si decides cambiar tus preferencias más tarde durante tu sesión de navegación, puedes hacer clic en la pestaña 'Política de privacidad y cookies' 
-            en tu pantalla. Esto mostrará el aviso de consentimiento de nuevo, permitiéndote cambiar tus preferencias o retirar tu consentimiento completamente.
+            Puedes controlar y/o eliminar las cookies según desees. Puedes eliminar todas las cookies que ya están en tu dispositivo y puedes configurar 
+            la mayoría de los navegadores para evitar que se coloquen.
           </p>
           <p className="mb-4">
-            Además, diferentes navegadores proporcionan diferentes métodos para bloquear y eliminar las cookies utilizadas por los sitios web. 
-            Puedes cambiar la configuración de tu navegador para bloquear/eliminar las cookies.
+            Para saber más sobre cómo gestionar las cookies en tu navegador, puedes utilizar la función de ayuda de tu navegador o visitar 
+            <a href="https://www.aboutcookies.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"> aboutcookies.org</a>.
           </p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Contacto</h2>
@@ -75,7 +72,7 @@ export default function CookiePolicyPage() {
             Si tienes alguna pregunta sobre esta política de cookies, por favor contacta con nosotros:
           </p>
           <p className="mb-4">
-            Por correo electrónico: <a href="mailto:info@onchess.tauideas.tech" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">info@onchess.tauideas.tech</a>
+            Por correo electrónico: <a href="mailto:hello@tauideas.tech" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">hello@tauideas.tech</a>
           </p>
         </div>
       </div>

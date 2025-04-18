@@ -72,8 +72,8 @@ export default function Footer() {
           <div className="md:col-span-1">
             <h3 className="text-white text-lg font-semibold mb-4">Contacto</h3>
             <p className="text-sm mb-2">
-              <a href="mailto:info@onchess.tauideas.tech" className="text-gray-400 hover:text-white transition-colors">
-                info@onchess.tauideas.tech
+              <a href="mailto:hello@tauideas.tech" className="text-gray-400 hover:text-white transition-colors">
+                hello@tauideas.tech
               </a>
             </p>
             <div className="flex space-x-4 mt-4">

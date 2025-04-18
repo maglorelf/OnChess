@@ -74,7 +74,7 @@ export default function TermsOfUsePage() {
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Contacto</h2>
           <p className="mb-4">
-            Si tienes alguna pregunta sobre estos Términos, por favor contacta con nosotros en <a href="mailto:info@onchess.tauideas.tech" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">info@onchess.tauideas.tech</a>.
+            Si tienes alguna pregunta sobre estos Términos, por favor contacta con nosotros en <a href="mailto:hello@tauideas.tech" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">hello@tauideas.tech</a>.
           </p>
         </div>
       </div>

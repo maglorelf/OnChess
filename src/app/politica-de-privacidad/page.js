@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
             Si tienes alguna pregunta sobre esta Política de Privacidad, puedes contactarnos:
           </p>
           <p className="mb-4">
-            Por correo electrónico: <a href="mailto:info@onchess.tauideas.tech" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">info@onchess.tauideas.tech</a>
+            Por correo electrónico: <a href="mailto:hello@tauideas.tech" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">hello@tauideas.tech</a>
           </p>
         </div>
       </div>
