@@ -1,5 +1,8 @@
 import { getAllBlogSlugs, getBlogData } from '@/lib/mdUtils';
 import { serialize } from 'next-mdx-remote/serialize';
+import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import Image from 'next/image';
 import Link from 'next/link';
 import MDXContentWrapper from '@/components/MDXContentWrapper';
@@ -62,9 +65,8 @@ export default async function BlogPost({ params }) {
   const serializedMDX = await serialize(blogData.content, {
     mdxOptions: {
       development: process.env.NODE_ENV === 'development',
-      // Ensure necessary plugins are included if needed for your MDX content
-      // remarkPlugins: [remarkGfm],
-      // rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeHighlight],
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
     },
   });
 
