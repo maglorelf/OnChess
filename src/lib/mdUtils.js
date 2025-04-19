@@ -6,18 +6,24 @@ const blogsDirectory = path.join(process.cwd(), 'src/content/blogs');
 
 export function getAllBlogSlugs() {
   const fileNames = fs.readdirSync(blogsDirectory);
-  
+
   return fileNames.map(fileName => {
     return {
       params: {
-        slug: fileName.replace(/\.md$/, '')
-      }
+        slug: fileName.replace(/\.(md|mdx)$/, ''),
+      },
     };
   });
 }
 
 export function getBlogData(slug) {
-  const fullPath = path.join(blogsDirectory, `${slug}.md`);
+  // Try to find the file with .mdx extension first, then fall back to .md
+  let fullPath = path.join(blogsDirectory, `${slug}.mdx`);
+
+  if (!fs.existsSync(fullPath)) {
+    fullPath = path.join(blogsDirectory, `${slug}.md`);
+  }
+
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   // Use gray-matter to parse the post metadata section
@@ -27,17 +33,17 @@ export function getBlogData(slug) {
   return {
     slug,
     content,
-    ...data
+    ...data,
   };
 }
 
 export function getAllBlogs() {
   // Get file names under /blogs
   const fileNames = fs.readdirSync(blogsDirectory);
-  
+
   const allBlogsData = fileNames.map(fileName => {
-    // Remove ".md" from file name to get slug
-    const slug = fileName.replace(/\.md$/, '');
+    // Remove ".md" or ".mdx" from file name to get slug
+    const slug = fileName.replace(/\.(md|mdx)$/, '');
 
     // Read markdown file as string
     const fullPath = path.join(blogsDirectory, fileName);
@@ -49,10 +55,10 @@ export function getAllBlogs() {
     // Combine the data with the slug
     return {
       slug,
-      ...data
+      ...data,
     };
   });
-  
+
   // Sort blogs by date
   return allBlogsData.sort((a, b) => {
     if (a.date < b.date) {

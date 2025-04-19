@@ -1,25 +1,21 @@
 import { getAllBlogSlugs, getBlogData } from '@/lib/mdUtils';
-import ReactMarkdown from 'react-markdown';
+import { serialize } from 'next-mdx-remote/serialize';
 import Image from 'next/image';
 import Link from 'next/link';
-import rehypeRaw from 'rehype-raw';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeHighlight from 'rehype-highlight';
-import remarkGfm from 'remark-gfm';
+import MDXContentWrapper from '@/components/MDXContentWrapper';
 
 export async function generateStaticParams() {
-  const paths = getAllBlogSlugs();
-  return paths;
+  // Return array of { slug } objects for static routing
+  return getAllBlogSlugs().map(({ params }) => params);
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const blogData = getBlogData(slug);
 
+  const blogData = getBlogData(slug);
   return {
     title: `${blogData.title} | OnChess Blog`,
-    description: blogData.excerpt,
+    description: blogData.excerpt || '',
   };
 }
 
@@ -56,38 +52,21 @@ function ServerPlaceholder({ text, bgColor = '#3a506b' }) {
 
 export default async function BlogPost({ params }) {
   const { slug } = await params;
+
   const blogData = getBlogData(slug);
 
   // Determine background color based on slug
   const bgColor = slug.includes('chess-strategies') ? '#3a506b' : '#1b4332';
 
-  // Custom components for markdown rendering
-  const components = {
-    h1: ({ node, ...props }) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,
-    h2: ({ node, ...props }) => <h2 className="text-2xl font-bold mt-8 mb-4" {...props} />,
-    h3: ({ node, ...props }) => <h3 className="text-xl font-bold mt-6 mb-3" {...props} />,
-    p: ({ node, ...props }) => <p className="my-4" {...props} />,
-    ul: ({ node, ...props }) => <ul className="list-disc pl-6 my-4" {...props} />,
-    ol: ({ node, ...props }) => <ol className="list-decimal pl-6 my-4" {...props} />,
-    li: ({ node, ...props }) => <li className="mb-1" {...props} />,
-    blockquote: ({ node, ...props }) => (
-      <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4" {...props} />
-    ),
-    code: ({ node, inline, className, children, ...props }) => {
-      const match = /language-(\w+)/.exec(className || '');
-      return !inline && match ? (
-        <pre className="bg-gray-100 dark:bg-gray-800 rounded-md p-4 my-4 overflow-x-auto">
-          <code className={className} {...props}>
-            {children}
-          </code>
-        </pre>
-      ) : (
-        <code className="bg-gray-100 dark:bg-gray-800 rounded-md px-1" {...props}>
-          {children}
-        </code>
-      );
+  // Serialize the MDX content
+  const serializedMDX = await serialize(blogData.content, {
+    mdxOptions: {
+      development: process.env.NODE_ENV === 'development',
+      // Ensure necessary plugins are included if needed for your MDX content
+      // remarkPlugins: [remarkGfm],
+      // rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeHighlight],
     },
-  };
+  });
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
@@ -122,20 +101,7 @@ export default async function BlogPost({ params }) {
           </div>
         </div>
 
-        <div className="prose dark:prose-invert max-w-none">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[
-              rehypeRaw,
-              rehypeSlug,
-              [rehypeAutolinkHeadings, { behavior: 'wrap' }],
-              rehypeHighlight,
-            ]}
-            components={components}
-          >
-            {blogData.content}
-          </ReactMarkdown>
-        </div>
+        <MDXContentWrapper source={serializedMDX} />
       </div>
     </div>
   );
