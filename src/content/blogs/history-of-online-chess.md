@@ -3,7 +3,7 @@ title: "The Evolution of Online Chess"
 date: "2025-04-17"
 author: "Digital Historian"
 excerpt: "Explore how chess transformed from wooden boards to digital platforms, changing the game forever."
-coverImage: "/images/blog/online-chess.jpg"
+coverImage: "/images/blog/logo agax azul.jpg"
 ---
 
 # The Evolution of Online Chess

@@ -1,9 +1,9 @@
 ---
-title: "Chess Strategies for Beginners"
-date: "2025-04-15"
-author: "Chess Master"
-excerpt: "Learn the fundamental chess strategies to improve your game as a beginner."
-coverImage: "/images/blog/chess-beginners.jpg"
+title: 'Chess Strategies for Beginners'
+date: '2025-04-15'
+author: 'Chess Master'
+excerpt: 'Learn the fundamental chess strategies to improve your game as a beginner.'
+coverImage: '/images/blog/logo agax azul.jpg'
 ---
 
 # Chess Strategies for Beginners
@@ -34,6 +34,7 @@ Remember that undeveloped pieces are essentially spectators to the game. The mor
 ## Castle Early
 
 Castling serves two important purposes:
+
 1. It brings your king to safety
 2. It connects your rooks, preparing them for action
 
