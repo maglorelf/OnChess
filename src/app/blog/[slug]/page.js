@@ -3,9 +3,12 @@ import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import remarkMath from 'remark-math';
+import rehypeHighlight from 'rehype-highlight';
 import Image from 'next/image';
 import Link from 'next/link';
-import MDXContentWrapper from '@/components/MDXContentWrapper';
+// Importamos el nuevo componente cliente
+import BlogRenderer from '@/components/BlogRenderer';
 
 export async function generateStaticParams() {
   // Return array of { slug } objects for static routing
@@ -61,14 +64,27 @@ export default async function BlogPost({ params }) {
   // Determine background color based on slug
   const bgColor = slug.includes('chess-strategies') ? '#3a506b' : '#1b4332';
 
-  // Serialize the MDX content
-  const serializedMDX = await serialize(blogData.content, {
-    mdxOptions: {
-      development: process.env.NODE_ENV === 'development',
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
-    },
-  });
+  // Serialize the content only if it's MDX
+  let serializedMDX = null;
+  if (blogData.fileType === 'mdx') {
+    serializedMDX = await serialize(blogData.content, {
+      mdxOptions: {
+        development: process.env.NODE_ENV === 'development',
+        remarkPlugins: [
+          remarkGfm, // Admite tablas, tachados, etc.
+          remarkMath, // Admite fórmulas matemáticas
+        ],
+        rehypePlugins: [
+          rehypeSlug,
+          rehypeAutolinkHeadings,
+          rehypeHighlight, // Resaltado de sintaxis para bloques de código
+        ],
+        format: 'mdx',
+      },
+      parseFrontmatter: true,
+      scope: blogData,
+    });
+  }
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
@@ -100,10 +116,18 @@ export default async function BlogPost({ params }) {
           <div className="text-gray-600 dark:text-gray-400 flex flex-wrap gap-4">
             <span>{new Date(blogData.date).toLocaleDateString()}</span>
             {blogData.author && <span>By {blogData.author}</span>}
+            <span className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 rounded">
+              {blogData.fileType === 'mdx' ? 'MDX' : 'Markdown'}
+            </span>
           </div>
         </div>
 
-        <MDXContentWrapper source={serializedMDX} />
+        {/* Usamos el nuevo componente BlogRenderer */}
+        <BlogRenderer
+          fileType={blogData.fileType}
+          source={serializedMDX}
+          content={blogData.content}
+        />
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Cookies</h2>
           <p className="mb-4">
-            OnChess utiliza 'cookies'. Estos archivos se utilizan para almacenar información, incluyendo las preferencias de los visitantes y las páginas del sitio web que el visitante accedió o visitó. La información se utiliza para optimizar la experiencia de los usuarios personalizando el contenido de nuestra página web según el tipo de navegador de los visitantes y/u otra información.
+            OnChess utiliza &apos;cookies&apos;. Estos archivos se utilizan para almacenar información, incluyendo las preferencias de los visitantes y las páginas del sitio web que el visitante accedió o visitó. La información se utiliza para optimizar la experiencia de los usuarios personalizando el contenido de nuestra página web según el tipo de navegador de los visitantes y/u otra información.
           </p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Derechos de privacidad GDPR</h2>
