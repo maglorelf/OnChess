@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
-import { getAllBlogs } from "@/lib/mdUtils";
-import BlogPreview from "@/components/BlogPreview";
+import Image from 'next/image';
+import Link from 'next/link';
+import { getAllBlogs } from '@/lib/mdUtils';
+import BlogPreview from '@/components/BlogPreview';
 
 export default function Home() {
   // Get the latest 3 blog posts
@@ -21,19 +21,14 @@ export default function Home() {
                 Welcome to <span className="text-primary">OnChess</span>
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg">
-                Your destination for chess knowledge, strategy, and the latest in online chess. Elevate your game with expert insights.
+                Your destination for chess knowledge, strategy, and the latest in online chess.
+                Elevate your game with expert insights.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/blog"
-                  className="btn-primary"
-                >
+                <Link href="/blog" className="btn-primary">
                   Explore Our Blog
                 </Link>
-                <a
-                  className="btn-secondary"
-                  href="#latest-articles"
-                >
+                <a className="btn-secondary" href="#latest-articles">
                   Latest Articles
                 </a>
               </div>
@@ -57,7 +52,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* Features Section */}
       <section className="saas-section bg-gray-50 dark:bg-gray-800/50">
         <div className="saas-container">
@@ -67,13 +62,24 @@ export default function Home() {
               Discover a world of chess resources designed to help players of all levels
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1 */}
             <div className="saas-card p-6">
               <div className="w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  />
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">Expert Strategies</h3>
@@ -81,12 +87,23 @@ export default function Home() {
                 Learn winning strategies and tactics from chess masters and improve your game.
               </p>
             </div>
-            
+
             {/* Feature 2 */}
             <div className="saas-card p-6">
               <div className="w-12 h-12 rounded-lg bg-accent/10 dark:bg-accent/20 flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-accent"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  />
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">Community Insights</h3>
@@ -94,17 +111,29 @@ export default function Home() {
                 Connect with fellow chess enthusiasts and share your experiences and knowledge.
               </p>
             </div>
-            
+
             {/* Feature 3 */}
             <div className="saas-card p-6">
               <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/20 flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-green-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">Latest News</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Stay updated with the latest trends, tournaments, and developments in the chess world.
+                Stay updated with the latest trends, tournaments, and developments in the chess
+                world.
               </p>
             </div>
           </div>
@@ -125,7 +154,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {latestBlogs.map((blog) => (
+            {latestBlogs.map(blog => (
               <BlogPreview
                 key={blog.slug}
                 title={blog.title}
@@ -138,10 +167,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-8">
-            <Link
-              href="/blog"
-              className="btn-secondary"
-            >
+            <Link href="/blog" className="btn-secondary">
               View All Articles
             </Link>
           </div>
@@ -152,13 +178,16 @@ export default function Home() {
       <section className="saas-section gradient-bg text-white">
         <div className="saas-container">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to improve your chess game?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Ready to improve your chess game?
+            </h2>
             <p className="text-xl mb-8">
-              Join our community and get access to expert strategies, exclusive tutorials, and connect with fellow chess enthusiasts.
-            </p>
+              Join our community and get access to expert strategies, exclusive tutorials, and
+              connect with fellow chess enthusiasts.
+            </p>{' '}
             <Link
               href="/blog"
-              className="inline-block bg-white text-primary font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg hover:transform hover:translate-y-[-2px]"
+              className="inline-block bg-indigo-800 text-white font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg hover:bg-indigo-700 hover:transform hover:translate-y-[-2px]"
             >
               Start Learning Today
             </Link>
