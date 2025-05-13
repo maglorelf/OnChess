@@ -165,7 +165,9 @@ export default function Home({ initialBlogs = [] }) {
             <span className="px-3 py-1 text-sm font-medium text-primary bg-blue-100 dark:bg-blue-900 rounded-full mb-4">
               {t('home.blogSection.label')}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">{t('home.blogSection.title')}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+              {t('home.blogSection.title')}
+            </h2>
             <p className="text-xl text-center text-gray-600 dark:text-gray-300 max-w-2xl">
               {t('home.blogSection.subtitle')}
             </p>

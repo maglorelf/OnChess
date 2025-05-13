@@ -20,7 +20,7 @@ function BlogLoading() {
           </div>
         </div>
       </section>
-      
+
       <section className="saas-section bg-white dark:bg-gray-900">
         <div className="saas-container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -39,7 +39,7 @@ export default function Blog({ searchParams }) {
   // Get blogs with language from search params
   const language = searchParams?.lang;
   const blogs = getAllBlogs();
-  
+
   return (
     <Suspense fallback={<BlogLoading />}>
       <BlogClientPage initialBlogs={blogs} initialLanguage={language} />

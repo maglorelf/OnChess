@@ -7,14 +7,14 @@ import { useLanguage } from '@/lib/languageContext';
 export default function BlogClientPage({ initialBlogs, initialLanguage }) {
   const { t, language, changeLanguage } = useLanguage();
   const [blogs, setBlogs] = useState(initialBlogs);
-  
+
   // Update language preferences if URL param is provided
   useEffect(() => {
     if (initialLanguage && initialLanguage !== language) {
       changeLanguage(initialLanguage);
     }
   }, [initialLanguage, language, changeLanguage]);
-  
+
   // Resort blogs when language changes
   useEffect(() => {
     const sortedBlogs = [...initialBlogs].sort((a, b) => {
@@ -26,7 +26,7 @@ export default function BlogClientPage({ initialBlogs, initialLanguage }) {
     });
     setBlogs(sortedBlogs);
   }, [language, initialBlogs]);
-  
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}

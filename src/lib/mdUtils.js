@@ -71,10 +71,10 @@ export function getBlogData(slug, language = null) {
     }
 
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-    
+
     // Use gray-matter to parse the post metadata section
     const { data, content } = matter(fileContents);
-    
+
     // If a language is specified and doesn't match the blog's language, return null
     if (language && data.language && data.language !== language) {
       return null;
@@ -105,7 +105,7 @@ export function getAllBlogs(language = null) {
   if (!blogsDirectory || !fs.existsSync(blogsDirectory)) {
     return [];
   }
-  
+
   try {
     // Get file names under /blogs
     const fileNames = fs.readdirSync(blogsDirectory);
@@ -131,10 +131,10 @@ export function getAllBlogs(language = null) {
           if (process.env.NODE_ENV === 'production' && data.draft === true) {
             return null;
           }
-          
+
           // Add default language if not specified
           const blogLanguage = data.language || LANGUAGES.EN;
-          
+
           // Filter by language if specified
           if (language && blogLanguage !== language) {
             return null;
