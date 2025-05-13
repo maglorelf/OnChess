@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -188,12 +188,19 @@ export default function Header() {
           >
             Home
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-          </Link>
+          </Link>{' '}
           <Link
             href="/blog"
             className="font-medium text-gray-100 hover:text-blue-400 transition-all duration-200 relative group"
           >
             Blog
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link
+            href="/resources"
+            className="font-medium text-gray-100 hover:text-blue-400 transition-all duration-200 relative group"
+          >
+            Resources
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link

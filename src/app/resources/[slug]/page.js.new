@@ -1,0 +1,13 @@
+import { getResourceBySlug } from '@/lib/resourceUtils';
+import ResourceDetail from '@/components/ResourceDetail';
+
+// Server Component
+export default async function ResourcePage({ params }) {
+  const { slug } = params;
+  
+  // Fetch resource data on the server
+  const resource = await getResourceBySlug(slug);
+  
+  // Pass data to client component
+  return <ResourceDetail resource={resource} />;
+}

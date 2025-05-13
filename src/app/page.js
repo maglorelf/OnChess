@@ -212,12 +212,10 @@ export default function Home() {
                 className="dark:invert"
               />
               Blog
-            </Link>
-            <a
+            </Link>{' '}
+            <Link
               className="flex items-center gap-2 hover:text-primary transition-colors"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/resources"
             >
               <Image
                 aria-hidden
@@ -228,7 +226,7 @@ export default function Home() {
                 className="dark:invert"
               />
               Resources
-            </a>
+            </Link>
             <a
               className="flex items-center gap-2 hover:text-primary transition-colors"
               href="#"
