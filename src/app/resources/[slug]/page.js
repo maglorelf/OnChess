@@ -26,6 +26,8 @@ function ResourceLoading() {
 
 // Not Found Component
 function ResourceNotFound() {
+  // This is a server component, so we can't use useLanguage directly
+  // The ResourceDetailView will handle translations for this on the client
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto text-center">
@@ -42,11 +44,16 @@ function ResourceNotFound() {
 }
 
 // Server Component to generate metadata
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params, searchParams }) {
   // Await params before destructuring
   const resolvedParams = await params;
   const { slug } = resolvedParams;
-  const resource = await getResourceBySlug(slug);
+
+  // Get language preference from query params (if available)
+  const languageParam = searchParams?.lang;
+
+  // Try to get resource in preferred language, but fall back to any language
+  const resource = await getResourceBySlug(slug, languageParam);
 
   if (!resource) {
     return {
@@ -67,13 +74,21 @@ export async function generateMetadata({ params }) {
 }
 
 // Main page component (server component)
-export default async function ResourcePage({ params }) {
+export default async function ResourcePage({ params, searchParams }) {
   // Await params before destructuring
   const resolvedParams = await params;
   const { slug } = resolvedParams;
 
-  // Fetch resource data on the server
-  const resource = await getResourceBySlug(slug);
+  // Get language preference from query params (if available)
+  const languageParam = searchParams?.lang;
+
+  // Fetch resource data on the server - try preferred language first
+  let resource = await getResourceBySlug(slug, languageParam);
+
+  // If not found with language preference, try without language restriction
+  if (!resource && languageParam) {
+    resource = await getResourceBySlug(slug);
+  }
 
   // Handle not found
   if (!resource) {

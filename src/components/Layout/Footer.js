@@ -1,8 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '@/lib/languageContext';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="bg-gray-900 text-gray-300 pt-12 pb-8">
@@ -11,6 +15,7 @@ export default function Footer() {
           {/* Logo and description */}
           <div className="md:col-span-1">
             <Link href="/" className="inline-block mb-4">
+              {' '}
               <Image
                 src="/logo-on-chess-text.png"
                 alt="OnChess Logo"
@@ -19,23 +24,21 @@ export default function Footer() {
                 className="h-10 w-auto"
               />
             </Link>
-            <p className="text-sm">
-              Tu destino para el conocimiento de ajedrez, estrategia y lo último en ajedrez online.
-            </p>
+            <p className="text-sm">{t('metadata.description')}</p>
           </div>
 
           {/* Quick links */}
           <div className="md:col-span-1">
-            <h3 className="text-white text-lg font-semibold mb-4">Enlaces rápidos</h3>
+            <h3 className="text-white text-lg font-semibold mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                  Inicio
+                  {t('nav.home')}
                 </Link>
               </li>
               <li>
                 <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
-                  Blog
+                  {t('nav.blog')}
                 </Link>
               </li>
               <li>
@@ -155,11 +158,10 @@ export default function Footer() {
               </a>
             </div>
           </div>
-        </div>
-
+        </div>{' '}
         <div className="border-t border-gray-800 mt-10 pt-8">
           <p className="text-sm text-center text-gray-500">
-            © {currentYear} OnChess. Todos los derechos reservados.
+            {t('footer.copyright', { year: currentYear })}
           </p>
         </div>
       </div>

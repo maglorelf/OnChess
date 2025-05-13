@@ -41,6 +41,12 @@ export const CONTENT_TYPES = {
   PDF: 'pdf',
 };
 
+// Supported languages
+export const LANGUAGES = {
+  EN: 'en',
+  ES: 'es',
+};
+
 // All possible tags
 export const ALL_TAGS = [
   'initiation',
@@ -81,7 +87,7 @@ export function getResourceFiles() {
 }
 
 // Get all resources with their metadata
-export function getAllResources() {
+export function getAllResources(language = null) {
   // For server-side execution
   if (typeof window === 'undefined') {
     const fileNames = getResourceFiles();
@@ -103,6 +109,9 @@ export function getAllResources() {
       // Ensure tags are in the correct format (array)
       const tags = Array.isArray(data.tags) ? data.tags : [];
 
+      // Determine language (default to English if not specified)
+      const resourceLanguage = data.language || LANGUAGES.EN;
+
       // Combine the data with slug
       return {
         slug,
@@ -111,12 +120,19 @@ export function getAllResources() {
         category: data.category || CATEGORIES.THEORY,
         contentType: data.contentType || CONTENT_TYPES.TEXT,
         tags,
+        language: resourceLanguage,
         ...data,
       };
-    });
+    }); // Filter by language if specified
+    let filteredResources = allResources;
+    if (language) {
+      filteredResources = allResources.filter(
+        resource => resource.language === language || !resource.language // Include resources with no language specified
+      );
+    }
 
     // Sort resources by date
-    return allResources.sort((a, b) => {
+    return filteredResources.sort((a, b) => {
       if (a.date < b.date) {
         return 1;
       } else {
@@ -132,7 +148,7 @@ export function getAllResources() {
 }
 
 // Get a single resource by slug
-export async function getResourceBySlug(slug) {
+export async function getResourceBySlug(slug, language = null) {
   // Only run server-side
   if (typeof window !== 'undefined') {
     console.warn('getResourceBySlug() should only be called on the server side');
@@ -155,12 +171,19 @@ export async function getResourceBySlug(slug) {
   } // Use gray-matter to parse the resource metadata section
   const { data, content } = matter(fileContents);
   // Process markdown to HTML using our async function
-  const contentHtml = await processMarkdownToHtml(content);
-  // Validate access level
+  const contentHtml = await processMarkdownToHtml(content); // Validate access level
   const accessLevel = Number(data.accessLevel) || ACCESS_LEVELS.REGISTERED;
 
   // Ensure tags are in the correct format (array)
   const tags = Array.isArray(data.tags) ? data.tags : [];
+
+  // Get language (default to English if not specified)
+  const resourceLanguage = data.language || LANGUAGES.EN;
+
+  // If a specific language is requested and doesn't match, return null
+  if (language && resourceLanguage !== language) {
+    return null;
+  }
 
   // Combine the data with the slug and content
   return {
@@ -171,6 +194,7 @@ export async function getResourceBySlug(slug) {
     category: data.category || CATEGORIES.THEORY,
     contentType: data.contentType || CONTENT_TYPES.TEXT,
     tags,
+    language: resourceLanguage,
     ...data,
   };
 }
@@ -208,6 +232,17 @@ export function filterResourcesByContentType(resources, contentType) {
 // Filter resources by access level
 export function filterResourcesByAccessLevel(resources, maxAccessLevel) {
   return resources.filter(resource => resource.accessLevel <= maxAccessLevel);
+}
+
+// Filter resources by language
+export function filterResourcesByLanguage(resources, language) {
+  if (!language) {
+    return resources;
+  }
+
+  return resources.filter(
+    resource => resource.language === language || !resource.language // Include resources with no language specified
+  );
 }
 
 // Get user access level based on user data

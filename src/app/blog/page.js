@@ -1,38 +1,48 @@
 import { getAllBlogs } from '@/lib/mdUtils';
-import BlogList from '@/components/BlogList';
+import BlogClientPage from '@/components/BlogClientPage';
+import { Suspense } from 'react';
 
+// Metadata for the page
 export const metadata = {
-  title: 'Blog | OnChess',
+  title: 'Chess Blog | OnChess',
   description: 'Articles and insights about chess strategy, history, and online play',
 };
 
-export default function Blog() {
-  const blogs = getAllBlogs();
-  
+function BlogLoading() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Header Section */}
       <section className="hero-gradient py-16 md:py-24">
         <div className="saas-container">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block px-3 py-1 text-sm font-medium text-primary bg-blue-100 dark:bg-blue-900 rounded-full mb-4">
-              Knowledge Hub
-            </span>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Chess Blog</h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Articles and insights about chess strategy, history, and online play. 
-              Expand your understanding of the game.
-            </p>
+          <div className="animate-pulse max-w-3xl mx-auto text-center">
+            <div className="h-6 bg-gray-200 dark:bg-gray-700 w-24 mx-auto mb-4 rounded-full"></div>
+            <div className="h-10 bg-gray-200 dark:bg-gray-700 w-48 mx-auto mb-6 rounded"></div>
+            <div className="h-4 bg-gray-200 dark:bg-gray-700 w-96 mx-auto rounded"></div>
           </div>
         </div>
       </section>
       
-      {/* Blog Content */}
       <section className="saas-section bg-white dark:bg-gray-900">
         <div className="saas-container">
-          <BlogList blogs={blogs} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="animate-pulse saas-card h-72"></div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
+  );
+}
+
+// Server component
+export default function Blog({ searchParams }) {
+  // Get blogs with language from search params
+  const language = searchParams?.lang;
+  const blogs = getAllBlogs();
+  
+  return (
+    <Suspense fallback={<BlogLoading />}>
+      <BlogClientPage initialBlogs={blogs} initialLanguage={language} />
+    </Suspense>
   );
 }

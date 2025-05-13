@@ -15,14 +15,31 @@ export async function generateStaticParams() {
   return getAllBlogSlugs().map(({ params }) => params);
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
+  const languageParam = searchParams?.lang;
 
-  const blogData = getBlogData(slug);
-  return {
-    title: `${blogData.title} | OnChess Blog`,
-    description: blogData.excerpt || '',
-  };
+  // Try to get blog data with language preference, fall back if not found
+  try {
+    const blogData = getBlogData(slug, languageParam) || getBlogData(slug);
+
+    if (!blogData) {
+      return {
+        title: 'Blog Post Not Found | OnChess',
+        description: 'The requested blog post could not be found.',
+      };
+    }
+
+    return {
+      title: `${blogData.title} | OnChess Blog`,
+      description: blogData.excerpt || 'Chess article on OnChess',
+    };
+  } catch (error) {
+    return {
+      title: 'Blog Post Not Found | OnChess',
+      description: 'The requested blog post could not be found.',
+    };
+  }
 }
 
 // Server Component fallback for image placeholder
@@ -56,10 +73,32 @@ function ServerPlaceholder({ text, bgColor = '#3a506b' }) {
   );
 }
 
-export default async function BlogPost({ params }) {
+export default async function BlogPost({ params, searchParams }) {
   const { slug } = await params;
+  const languageParam = searchParams?.lang;
 
-  const blogData = getBlogData(slug);
+  // Try to get blog in preferred language first
+  let blogData = getBlogData(slug, languageParam);
+
+  // If not found with language preference, try without language filter
+  if (!blogData && languageParam) {
+    blogData = getBlogData(slug);
+  }
+
+  // If still not found, return 404
+  if (!blogData) {
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold mb-4">Blog Post Not Found</h1>
+          <p className="mb-8">The blog post you're looking for doesn't exist or has been moved.</p>
+          <Link href="/blog" className="text-primary hover:underline">
+            ← Back to blogs
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   // Determine background color based on slug
   const bgColor = slug.includes('chess-strategies') ? '#3a506b' : '#1b4332';
@@ -88,13 +127,13 @@ export default async function BlogPost({ params }) {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
+      {' '}
       <Link
-        href="/blog"
+        href={`/blog${languageParam ? `?lang=${languageParam}` : ''}`}
         className="text-blue-600 dark:text-blue-400 mb-8 inline-block hover:underline"
       >
-        ← Back to blogs
+        ← {languageParam === 'es' ? 'Volver al blog' : 'Back to blogs'}
       </Link>
-
       <div className="max-w-none">
         <div className="mb-8 w-full aspect-video relative rounded-lg overflow-hidden">
           {blogData.coverImage ? (
@@ -112,13 +151,18 @@ export default async function BlogPost({ params }) {
         </div>
 
         <div className="mb-6 border-b pb-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">{blogData.title}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">{blogData.title}</h1>{' '}
           <div className="text-gray-600 dark:text-gray-400 flex flex-wrap gap-4">
             <span>{new Date(blogData.date).toLocaleDateString()}</span>
             {blogData.author && <span>By {blogData.author}</span>}
             <span className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 rounded">
               {blogData.fileType === 'mdx' ? 'MDX' : 'Markdown'}
             </span>
+            {blogData.language && (
+              <span className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded uppercase">
+                {blogData.language}
+              </span>
+            )}
           </div>
         </div>
 

@@ -8,7 +8,7 @@ function ResourcesLoading() {
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Chess Resources</h1>
+          <h1 className="text-4xl font-bold mb-4">Resources</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Loading resources...
           </p>
@@ -35,9 +35,18 @@ function ResourcesLoading() {
   );
 }
 
+// Generate metadata for the page
+export function generateMetadata({ params, searchParams }) {
+  return {
+    title: 'Chess Resources - OnChess',
+    description: 'Educational resources to help you improve your chess skills',
+  };
+}
+
 // Server Component
 export default async function ResourcesPage() {
-  // Fetch resources on the server
+  // Fetch all resources on the server (we'll filter by language on the client)
+  // This allows for language switching without page reload
   const allResources = getAllResources();
 
   // Pass data to client component with Suspense boundary

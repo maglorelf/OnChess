@@ -7,9 +7,11 @@ import Image from 'next/image';
 import { isLoggedIn, getUserData } from '@/lib/userUtils';
 import { canAccessResource, ACCESS_LEVELS } from '@/lib/resourceUtils';
 import ResourceMarkdownContent from '@/components/ResourceMarkdownContent';
+import { useLanguage } from '@/lib/languageContext';
 
 export default function ResourceDetailView({ resource }) {
   const router = useRouter();
+  const { t } = useLanguage();
 
   const [loading, setLoading] = useState(true);
   const [hasAccess, setHasAccess] = useState(false);
@@ -106,18 +108,18 @@ export default function ResourceDetailView({ resource }) {
             </h2>
             <p className="text-amber-700 dark:text-amber-400 mb-6">
               {resource.accessLevel === ACCESS_LEVELS.STUDENT
-                ? 'This content requires student access.'
+                ? t('resources.accessLevelStudent')
                 : resource.accessLevel === ACCESS_LEVELS.PREMIUM
-                ? 'This is premium content for teachers and coaches.'
-                : 'You do not have access to this content.'}
+                ? t('resources.accessLevelPremium')
+                : t('resources.accessLevelMessage')}
             </p>
             <div className="flex flex-col items-center justify-center">
               <p className="text-sm text-amber-700 dark:text-amber-400 mb-4">
                 {resource.accessLevel === ACCESS_LEVELS.STUDENT
-                  ? 'Students have access to this content. Contact the administrator if you are a student.'
+                  ? t('resources.studentAccessMessage')
                   : resource.accessLevel === ACCESS_LEVELS.PREMIUM
-                  ? 'Teachers and coaches have access to this premium content.'
-                  : 'Please contact support for more information.'}
+                  ? t('resources.premiumAccessMessage')
+                  : t('resources.contactSupportMessage')}
               </p>
             </div>
           </div>
@@ -170,10 +172,10 @@ export default function ResourceDetailView({ resource }) {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Download PGN File
+                  {t('resources.pgnFileDownload')}
                 </a>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                  Open this file in your preferred chess analysis software.
+                  {t('resources.pgnFileDesc')}
                 </p>
               </div>
             )}
@@ -202,7 +204,7 @@ export default function ResourceDetailView({ resource }) {
                     >
                       <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                     </svg>
-                    View PDF
+                    {t('resources.pdfDocumentView')}
                   </a>
                 </div>
                 <div className="border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg">
@@ -222,7 +224,7 @@ export default function ResourceDetailView({ resource }) {
           <div className="mb-8">
             {resource.puzzleId && (
               <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4">Interactive Puzzle</h3>
+                <h3 className="text-lg font-semibold mb-4">{t('resources.interactivePuzzle')}</h3>
                 <div className="aspect-w-1 aspect-h-1 max-w-2xl mx-auto">
                   {/* Here you could embed a chess puzzle */}
                   <div className="w-full h-full flex items-center justify-center border rounded">

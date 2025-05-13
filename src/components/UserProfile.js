@@ -2,6 +2,58 @@
 
 import { useState, useEffect } from 'react';
 import { getUserData, isLoggedIn } from '@/lib/userUtils';
+import { useLanguage } from '@/lib/languageContext';
+import { LANGUAGES } from '@/lib/resourceUtils';
+
+// Language settings component
+function LanguageSettings({ userData }) {
+  const { language, changeLanguage, t } = useLanguage();
+
+  const handleLanguageChange = newLanguage => {
+    changeLanguage(newLanguage);
+  };
+
+  return (
+    <div className="space-y-4">
+      <p className="text-gray-300">
+        {t('profile.currentLanguage')}:
+        <span className="ml-2 font-semibold">
+          {language === LANGUAGES.EN
+            ? t('profile.languages.english')
+            : t('profile.languages.spanish')}
+        </span>
+      </p>
+
+      <div className="flex flex-wrap gap-3">
+        <button
+          onClick={() => handleLanguageChange(LANGUAGES.EN)}
+          className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
+            language === LANGUAGES.EN
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-600 text-gray-200 hover:bg-gray-500'
+          }`}
+        >
+          <span className="text-sm font-medium">{t('profile.languages.english')}</span>
+        </button>
+
+        <button
+          onClick={() => handleLanguageChange(LANGUAGES.ES)}
+          className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
+            language === LANGUAGES.ES
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-600 text-gray-200 hover:bg-gray-500'
+          }`}
+        >
+          <span className="text-sm font-medium">{t('profile.languages.spanish')}</span>
+        </button>
+      </div>
+
+      <div className="mt-4 text-gray-400 text-sm">
+        <p>{t('profile.languageDescription')}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function UserProfile() {
   const [userData, setUserData] = useState(null);
@@ -38,7 +90,6 @@ export default function UserProfile() {
   return (
     <div className="p-6 bg-gray-800 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-white mb-4">User Profile</h2>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div className="bg-gray-700 p-4 rounded-lg">
           <h3 className="text-lg font-semibold text-blue-400 mb-2">Personal Details</h3>
@@ -78,9 +129,8 @@ export default function UserProfile() {
             )}
           </div>
         </div>
-      </div>
-
-      <div className="bg-gray-700 p-4 rounded-lg">
+      </div>{' '}
+      <div className="bg-gray-700 p-4 rounded-lg mb-6">
         <h3 className="text-lg font-semibold text-blue-400 mb-2">Roles</h3>
         <div className="flex flex-wrap gap-2">
           {userData.isTeacher && (
@@ -93,6 +143,10 @@ export default function UserProfile() {
             <span className="text-gray-400">No specific roles assigned</span>
           )}
         </div>
+      </div>
+      <div className="bg-gray-700 p-4 rounded-lg">
+        <h3 className="text-lg font-semibold text-blue-400 mb-2">Language Preferences</h3>
+        <LanguageSettings userData={userData} />
       </div>
     </div>
   );

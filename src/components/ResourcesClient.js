@@ -3,10 +3,17 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { isLoggedIn, getUserData } from '@/lib/userUtils';
-import { getUserAccessLevel, filterResourcesByAccessLevel } from '@/lib/resourceUtils';
+import {
+  getUserAccessLevel,
+  filterResourcesByAccessLevel,
+  filterResourcesByLanguage,
+  LANGUAGES,
+} from '@/lib/resourceUtils';
 import ResourceList from '@/components/ResourceList';
+import { useLanguage } from '@/lib/languageContext';
 
 export default function ResourcesClient({ initialResources }) {
+  const { language, t } = useLanguage();
   const [resources, setResources] = useState(initialResources);
   const [userAccessLevel, setUserAccessLevel] = useState(0);
   const [isLoggedInState, setIsLoggedInState] = useState(false);
@@ -20,34 +27,37 @@ export default function ResourcesClient({ initialResources }) {
     const accessLevel = getUserAccessLevel(userData);
     setUserAccessLevel(accessLevel);
 
-    // Filter resources based on user access level
+    // Filter resources based on user access level and language
     if (loggedIn) {
       // Show resources up to user's access level
-      const accessibleResources = filterResourcesByAccessLevel(initialResources, accessLevel);
+      let accessibleResources = filterResourcesByAccessLevel(initialResources, accessLevel);
+      // Filter by current language
+      accessibleResources = filterResourcesByLanguage(accessibleResources, language);
       setResources(accessibleResources);
     } else {
       // Not logged in - show only preview of level 1 resources
-      const previewResources = initialResources
-        .filter(resource => resource.accessLevel === 1)
-        .map(resource => ({
-          ...resource,
-          isPreview: true,
-        }));
+      let previewResources = initialResources.filter(resource => resource.accessLevel === 1);
+      // Filter by current language
+      previewResources = filterResourcesByLanguage(previewResources, language);
+      // Mark as previews
+      previewResources = previewResources.map(resource => ({
+        ...resource,
+        isPreview: true,
+      }));
       setResources(previewResources);
     }
-  }, [initialResources]);
+  }, [initialResources, language]); // Re-run when language changes
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+        {' '}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Chess Resources</h1>
+          <h1 className="text-4xl font-bold mb-4">{t('resources.title')}</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Explore our collection of chess materials, from openings to endgames, theory to
-            practice, designed for all skill levels.
+            {t('resources.subtitle')}
           </p>
         </div>
-
         {!isLoggedInState && resources.length > 0 && (
           <div className="mb-8 p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -76,7 +86,6 @@ export default function ResourcesClient({ initialResources }) {
             </div>
           </div>
         )}
-
         <ResourceList resources={resources} />
       </div>
     </div>

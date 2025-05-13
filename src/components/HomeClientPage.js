@@ -2,22 +2,18 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllBlogs } from '@/lib/mdUtils';
 import BlogPreview from '@/components/BlogPreview';
 import { useLanguage } from '@/lib/languageContext';
 import { useState, useEffect } from 'react';
 
-export default function Home() {
+export default function Home({ initialBlogs = [] }) {
   const { t, language } = useLanguage();
-  const [latestBlogs, setLatestBlogs] = useState([]);
+  const [latestBlogs, setLatestBlogs] = useState(initialBlogs);
 
-  // Get the latest blogs based on language
+  // Sort blogs by language when language changes
   useEffect(() => {
-    // Get all blogs
-    const allBlogs = getAllBlogs();
-
-    // Sort blogs prioritizing the current language, then take the top 3
-    const sortedBlogs = [...allBlogs]
+    // Sort blogs prioritizing the current language
+    const sortedBlogs = [...initialBlogs]
       .sort((a, b) => {
         // Prioritize current language
         if (a.language === language && b.language !== language) return -1;
@@ -28,11 +24,10 @@ export default function Home() {
       .slice(0, 3);
 
     setLatestBlogs(sortedBlogs);
-  }, [language]);
+  }, [language, initialBlogs]);
 
   return (
     <div className="flex flex-col min-h-screen">
-      {' '}
       {/* Hero Section - SaaS UI Style */}
       <section className="hero-gradient py-20 md:py-32">
         <div className="saas-container">
@@ -75,6 +70,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Features Section */}
       <section className="saas-section bg-gray-50 dark:bg-gray-800/50">
         <div className="saas-container">
@@ -160,7 +156,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>{' '}
+      </section>
+
       {/* Blog Preview Section */}
       <section id="latest-articles" className="saas-section bg-white dark:bg-gray-900">
         <div className="saas-container">
@@ -168,13 +165,12 @@ export default function Home() {
             <span className="px-3 py-1 text-sm font-medium text-primary bg-blue-100 dark:bg-blue-900 rounded-full mb-4">
               {t('home.blogSection.label')}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-              {t('home.blogSection.title')}
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">{t('home.blogSection.title')}</h2>
             <p className="text-xl text-center text-gray-600 dark:text-gray-300 max-w-2xl">
               {t('home.blogSection.subtitle')}
             </p>
-          </div>{' '}
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {latestBlogs.map(blog => (
               <BlogPreview
@@ -187,7 +183,8 @@ export default function Home() {
                 language={blog.language}
               />
             ))}
-          </div>{' '}
+          </div>
+
           <div className="text-center mt-8">
             <Link href={`/blog${language ? `?lang=${language}` : ''}`} className="btn-secondary">
               {t('home.blogSection.viewAll')}
@@ -195,6 +192,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* CTA Section */}
       <section className="saas-section gradient-bg text-white">
         <div className="saas-container">
@@ -215,6 +213,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Footer */}
       <footer className="bg-gray-100 dark:bg-gray-800 py-12">
         <div className="saas-container">

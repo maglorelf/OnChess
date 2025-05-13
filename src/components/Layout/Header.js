@@ -10,12 +10,15 @@ import {
   logout as logoutUser,
   subscribeToAuthChanges,
 } from '@/lib/userUtils';
+import { useLanguage } from '@/lib/languageContext';
+import LanguageSelector from '@/components/LanguageSelector';
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [memberData, setMemberData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useLanguage();
   const router = useRouter();
   // Check auth status on component mount, on window focus, and via subscription
   useEffect(() => {
@@ -179,39 +182,37 @@ export default function Header() {
               className="h-10 w-auto transform transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
-        </div>
-
+        </div>{' '}
         <nav className="hidden md:flex space-x-8">
           <Link
             href="/"
             className="font-medium text-gray-100 hover:text-blue-400 transition-all duration-200 relative group"
           >
-            Home
+            {t('nav.home')}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
           </Link>{' '}
           <Link
             href="/blog"
             className="font-medium text-gray-100 hover:text-blue-400 transition-all duration-200 relative group"
           >
-            Blog
+            {t('nav.blog')}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
             href="/resources"
             className="font-medium text-gray-100 hover:text-blue-400 transition-all duration-200 relative group"
           >
-            Resources
+            {t('nav.resources')}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
             href="/about"
             className="font-medium text-gray-100 hover:text-blue-400 transition-all duration-200 relative group"
           >
-            About
+            {t('nav.about')}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
           </Link>
         </nav>
-
         <div className="flex items-center space-x-4">
           {' '}
           {isLoggedIn ? (
@@ -240,7 +241,7 @@ export default function Header() {
                 {isLoading ? (
                   <span className="inline-block animate-spin rounded-full h-3 w-3 border-t-2 border-white mr-2"></span>
                 ) : null}
-                Logout
+                {t('nav.logout')}
               </button>
             </div>
           ) : (
@@ -249,16 +250,17 @@ export default function Header() {
                 href="/login"
                 className="bg-transparent border border-blue-500 hover:bg-blue-500/20 px-5 py-1.5 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-md hover:shadow-blue-500/20"
               >
-                Login
+                {t('nav.login')}
               </Link>
               <Link
                 href="/register"
                 className="bg-blue-600 hover:bg-blue-700 px-5 py-1.5 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-md hover:shadow-blue-600/40"
               >
-                Register
+                {t('nav.register')}
               </Link>
             </>
           )}
+          <LanguageSelector />
         </div>
       </div>
     </header>
