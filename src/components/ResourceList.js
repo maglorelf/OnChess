@@ -270,9 +270,9 @@ export default function ResourceList({ resources }) {
             </button>
           )}
         </div>
-
         {/* Categories */}
         <div className="mb-4">
+          {' '}
           <h4 className="text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">Category</h4>
           <div className="flex flex-wrap gap-2">
             {Object.values(CATEGORIES).map(category => (
@@ -281,8 +281,8 @@ export default function ResourceList({ resources }) {
                 onClick={() => setSelectedCategory(prev => (prev === category ? '' : category))}
                 className={`px-3 py-1 text-sm rounded-full capitalize transition-colors ${
                   selectedCategory === category
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    ? 'bg-primary text-gray-700 font-bold border-2 border-white outline outline-2 outline-primary shadow-md'
+                    : 'bg-gray-200 text-slate-900 dark:bg-gray-700 dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-600 border border-transparent'
                 }`}
               >
                 {category}
@@ -290,9 +290,9 @@ export default function ResourceList({ resources }) {
             ))}
           </div>
         </div>
-
         {/* Content Types */}
         <div className="mb-4">
+          {' '}
           <h4 className="text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">
             Content Type
           </h4>
@@ -303,16 +303,15 @@ export default function ResourceList({ resources }) {
                 onClick={() => setSelectedType(prev => (prev === type ? '' : type))}
                 className={`px-3 py-1 text-sm rounded-full capitalize transition-colors ${
                   selectedType === type
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    ? 'bg-primary text-gray-700 font-bold border-2 border-white outline outline-2 outline-primary shadow-md'
+                    : 'bg-gray-200 text-slate-900 dark:bg-gray-700 dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-600 border border-transparent'
                 }`}
               >
                 {type}
               </button>
             ))}
           </div>
-        </div>
-
+        </div>{' '}
         {/* Tags */}
         <div>
           <h4 className="text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">Tags</h4>
@@ -323,8 +322,8 @@ export default function ResourceList({ resources }) {
                 onClick={() => toggleTag(tag)}
                 className={`px-3 py-1 text-sm rounded-full transition-colors ${
                   selectedTags.includes(tag)
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    ? 'bg-primary text-gray-700 font-bold border-2 border-white outline outline-2 outline-primary shadow-md'
+                    : 'bg-gray-200 text-slate-900 dark:bg-gray-700 dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-600 border border-transparent'
                 }`}
               >
                 {tag}
