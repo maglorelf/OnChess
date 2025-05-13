@@ -20,7 +20,7 @@ export default function Header() {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useLanguage();
   const router = useRouter();
-
+  
   // Define fetchMemberData
   const fetchMemberData = useCallback(async (email, token) => {
     try {
@@ -45,7 +45,7 @@ export default function Header() {
     }
   }, []);
 
-  // Define checkAuthStatus with useCallback, but avoid unnecessary dependencies
+  // Define checkAuthStatus with useCallback
   const checkAuthStatus = useCallback(async () => {
     // First check local storage for token
     const authToken = typeof window !== 'undefined' ? localStorage.getItem('authToken') : null;
@@ -71,9 +71,8 @@ export default function Header() {
         setUser(userData);
         setIsLoggedIn(true);
 
-        // If the user has email and token, fetch member data
-        // But avoid causing circular dependencies by not checking memberData state
-        if (userData.email && authToken) {
+        // If we don't have member data yet but have the email, fetch it
+        if (!memberData && userData.email && authToken) {
           fetchMemberData(userData.email, authToken);
         }
       } else {
@@ -90,7 +89,7 @@ export default function Header() {
       setUser(null);
       setIsLoggedIn(false);
     }
-  }, [fetchMemberData]); // Only depend on fetchMemberData to avoid circular updates
+  }, [memberData, fetchMemberData]); // Include both memberData and fetchMemberData dependencies
 
   // Check auth status on component mount, on window focus, and via subscription
   useEffect(() => {
@@ -101,13 +100,10 @@ export default function Header() {
 
       if (loggedIn) {
         const userData = getUserData();
-        
-        if (userData) {
-          setMemberData(userData);
-        } 
-        // If no userData but still logged in, fetch from server
-        // but limit to initial mount to prevent infinite loops
-        else if (typeof window !== 'undefined') {
+        setMemberData(userData);
+
+        // If we have token but missing userData, fetch it from server
+        if (!userData && typeof window !== 'undefined') {
           checkAuthStatus();
         }
       } else {
@@ -126,16 +122,14 @@ export default function Header() {
     const unsubscribe = subscribeToAuthChanges((isLoggedIn, userData) => {
       console.log('Auth state changed:', isLoggedIn ? 'logged in' : 'logged out');
       setIsLoggedIn(isLoggedIn);
-      if (userData) {
-        setMemberData(userData);
-      }
+      setMemberData(userData);
     });
     
     return () => {
       window.removeEventListener('focus', handleFocus);
       unsubscribe(); // Clean up subscription
     };
-  }, [checkAuthStatus]); // Include checkAuthStatus as dependency
+  }, [checkAuthStatus]); // Add checkAuthStatus as dependency
 
   const handleLogout = async () => {
     setIsLoading(true);

@@ -1,5 +1,5 @@
 // Spanish translations
-export default {
+const spanishTranslations = {
   // Metadata
   metadata: {
     description:
@@ -52,11 +52,37 @@ export default {
       exploreBlog: 'Explorar Nuestro Blog',
       latestArticles: 'Últimos Artículos',
     },
+    featuresSection: {
+      title: 'Por Qué OnChess',
+      subtitle:
+        'Descubre un mundo de recursos de ajedrez diseñados para ayudar a jugadores de todos los niveles',
+      feature1: {
+        title: 'Estrategias Expertas',
+        description:
+          'Aprende estrategias y tácticas ganadoras de maestros del ajedrez y mejora tu juego.',
+      },
+      feature2: {
+        title: 'Conocimientos Comunitarios',
+        description:
+          'Conéctate con otros entusiastas del ajedrez y comparte tus experiencias y conocimientos.',
+      },
+      feature3: {
+        title: 'Últimas Noticias',
+        description:
+          'Mantente actualizado con las últimas tendencias, torneos y desarrollos en el mundo del ajedrez.',
+      },
+    },
     blogSection: {
       label: 'Nuestro Contenido Más Reciente',
       title: 'Últimos Artículos',
       subtitle: 'Descubre estrategias, historia y conocimientos sobre el juego de ajedrez.',
       viewAll: 'Ver Todos los Artículos',
+    },
+    ctaSection: {
+      title: '¿Listo para mejorar tu juego de ajedrez?',
+      description:
+        'Únete a nuestra comunidad y obtén acceso a estrategias de expertos, tutoriales exclusivos y conecta con otros entusiastas del ajedrez.',
+      button: 'Comienza a Aprender Hoy',
     },
   },
 
@@ -223,3 +249,5 @@ export default {
     es: 'Español',
   },
 };
+
+export default spanishTranslations;

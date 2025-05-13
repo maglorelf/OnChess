@@ -1,5 +1,5 @@
 // English translations
-export default {
+const englishTranslations = {
   // Metadata
   metadata: {
     description: 'Your destination for chess knowledge, strategy, and the latest in online chess',
@@ -51,11 +51,36 @@ export default {
       exploreBlog: 'Explore Our Blog',
       latestArticles: 'Latest Articles',
     },
+    featuresSection: {
+      title: 'Why OnChess',
+      subtitle: 'Discover a world of chess resources designed to help players of all levels',
+      feature1: {
+        title: 'Expert Strategies',
+        description:
+          'Learn winning strategies and tactics from chess masters and improve your game.',
+      },
+      feature2: {
+        title: 'Community Insights',
+        description:
+          'Connect with fellow chess enthusiasts and share your experiences and knowledge.',
+      },
+      feature3: {
+        title: 'Latest News',
+        description:
+          'Stay updated with the latest trends, tournaments, and developments in the chess world.',
+      },
+    },
     blogSection: {
       label: 'Our Latest Content',
       title: 'Latest Articles',
       subtitle: 'Discover strategies, history, and insights about the game of chess.',
       viewAll: 'View All Articles',
+    },
+    ctaSection: {
+      title: 'Ready to improve your chess game?',
+      description:
+        'Join our community and get access to expert strategies, exclusive tutorials, and connect with fellow chess enthusiasts.',
+      button: 'Start Learning Today',
     },
   },
 
@@ -222,3 +247,5 @@ export default {
     es: 'Spanish',
   },
 };
+
+export default englishTranslations;
