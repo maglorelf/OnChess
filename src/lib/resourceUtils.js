@@ -151,7 +151,8 @@ export async function getResourceBySlug(slug) {
       fileContents = fs.readFileSync(path.join(resourcesDirectory, `${slug}.md`), 'utf8');
     } catch (e) {
       return null;
-    }  } // Use gray-matter to parse the resource metadata section
+    }
+  } // Use gray-matter to parse the resource metadata section
   const { data, content } = matter(fileContents);
   // Process markdown to HTML using our async function
   const contentHtml = await processMarkdownToHtml(content);
