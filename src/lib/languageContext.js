@@ -19,6 +19,7 @@ function getBrowserLanguage() {
   if (typeof window === 'undefined') return 'en'; // Default for server-side rendering
 
   const browserLang = navigator.language || navigator.userLanguage;
+  // Check for Spanish first, otherwise default to English (UK)
   return browserLang.startsWith('es') ? 'es' : 'en';
 }
 

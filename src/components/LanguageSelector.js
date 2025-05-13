@@ -25,8 +25,7 @@ export default function LanguageSelector() {
         aria-expanded="true"
         aria-haspopup="true"
       >
-        <span className="mr-1">{language === 'en' ? '🇺🇸' : '🇪🇸'}</span>
-        <span className="hidden sm:inline">{language === 'en' ? 'English' : 'Español'}</span>
+        <span className="text-xl">{language === 'en' ? '🇬🇧' : '🇪🇸'}</span>
         <svg
           className="w-4 h-4 ml-1"
           fill="none"
@@ -49,16 +48,17 @@ export default function LanguageSelector() {
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="language-menu"
-        >
-          <div className="py-1" role="none">
+        >          <div className="py-1" role="none">
             <button
               onClick={() => handleLanguageChange('en')}
               className={`${
                 language === 'en' ? 'bg-gray-100 dark:bg-gray-700' : ''
               } flex w-full items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700`}
               role="menuitem"
+              title="English (UK)"
+              aria-label="Switch to English"
             >
-              <span className="mr-2">🇺🇸</span> English
+              <span className="text-xl mr-3">🇬🇧</span>
             </button>
             <button
               onClick={() => handleLanguageChange('es')}
@@ -66,8 +66,10 @@ export default function LanguageSelector() {
                 language === 'es' ? 'bg-gray-100 dark:bg-gray-700' : ''
               } flex w-full items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700`}
               role="menuitem"
+              title="Español"
+              aria-label="Cambiar a Español"
             >
-              <span className="mr-2">🇪🇸</span> Español
+              <span className="text-xl mr-3">🇪🇸</span>
             </button>
           </div>
         </div>
