@@ -86,19 +86,6 @@ const spanishTranslations = {
     },
   },
 
-  // Blog page
-  blog: {
-    label: 'Centro de Conocimiento',
-    title: 'Blog de Ajedrez',
-    description:
-      'Artículos y conocimientos sobre estrategia de ajedrez, historia y juego online. Amplía tu comprensión del juego.',
-    noEntries: 'No se encontraron entradas de blog.',
-    backToBlog: 'Volver al blog',
-    publishedOn: 'Publicado el',
-    authorBy: 'Por',
-    readingTime: '{time} min de lectura',
-  },
-
   // Footer
   footer: {
     copyright: '© {year} OnChess. Todos los derechos reservados.',
@@ -140,8 +127,15 @@ const spanishTranslations = {
   },
 
   // Blog page
-  blog: {
-    title: 'Blog de Ajedrez',
+  blog: {      
+    description:
+      'Artículos y conocimientos sobre estrategia de ajedrez, historia y juego online. Amplía tu comprensión del juego.',
+    noEntries: 'No se encontraron entradas de blog.',
+    backToBlog: 'Volver al blog',
+    authorBy: 'Por',
+    readingTime: '{time} min de lectura',
+    label: 'Centro de Conocimiento',
+    title: 'Blog de Ajedrez1',
     subtitle: 'Noticias, artículos y actualizaciones del mundo del ajedrez',
     readTime: '{time} minutos de lectura',
     publishedOn: 'Publicado el {date}',

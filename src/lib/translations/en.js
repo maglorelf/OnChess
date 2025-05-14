@@ -84,19 +84,6 @@ const englishTranslations = {
     },
   },
 
-  // Blog page
-  blog: {
-    label: 'Knowledge Hub',
-    title: 'Chess Blog',
-    description:
-      'Articles and insights about chess strategy, history, and online play. Expand your understanding of the game.',
-    noEntries: 'No blog entries found.',
-    backToBlog: 'Back to blog',
-    publishedOn: 'Published on',
-    authorBy: 'By',
-    readingTime: '{time} min read',
-  },
-
   // Footer
   footer: {
     copyright: '© {year} OnChess. All rights reserved.',
@@ -138,7 +125,13 @@ const englishTranslations = {
   },
 
   // Blog page
-  blog: {
+  blog: {   
+    label: 'Knowledge Hub',    
+    description:
+      'Articles and insights about chess strategy, history, and online play. Expand your understanding of the game.',
+    noEntries: 'No blog entries found.',
+    backToBlog: 'Back to blog',      
+    readingTime: '{time} min read',
     title: 'Chess Blog',
     subtitle: 'News, articles, and updates from the chess world',
     readTime: '{time} min read',

@@ -6,8 +6,6 @@ import { isLoggedIn, getUserData } from '@/lib/userUtils';
 import {
   getUserAccessLevel,
   filterResourcesByAccessLevel,
-  filterResourcesByLanguage,
-  LANGUAGES,
 } from '@/lib/resourceUtils';
 import ResourceList from '@/components/ResourceList';
 import { useLanguage } from '@/lib/languageContext';
@@ -31,14 +29,11 @@ export default function ResourcesClient({ initialResources }) {
     if (loggedIn) {
       // Show resources up to user's access level
       let accessibleResources = filterResourcesByAccessLevel(initialResources, accessLevel);
-      // Filter by current language
-      accessibleResources = filterResourcesByLanguage(accessibleResources, language);
+     
       setResources(accessibleResources);
     } else {
       // Not logged in - show only preview of level 1 resources
       let previewResources = initialResources.filter(resource => resource.accessLevel === 1);
-      // Filter by current language
-      previewResources = filterResourcesByLanguage(previewResources, language);
       // Mark as previews
       previewResources = previewResources.map(resource => ({
         ...resource,

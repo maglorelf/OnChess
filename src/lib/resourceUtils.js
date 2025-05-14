@@ -87,7 +87,7 @@ export function getResourceFiles() {
 }
 
 // Get all resources with their metadata
-export function getAllResources(language = null) {
+export function getAllResources() {
   // For server-side execution
   if (typeof window === 'undefined') {
     const fileNames = getResourceFiles();
@@ -123,16 +123,10 @@ export function getAllResources(language = null) {
         language: resourceLanguage,
         ...data,
       };
-    }); // Filter by language if specified
-    let filteredResources = allResources;
-    if (language) {
-      filteredResources = allResources.filter(
-        resource => resource.language === language || !resource.language // Include resources with no language specified
-      );
-    }
+    });
 
     // Sort resources by date
-    return filteredResources.sort((a, b) => {
+    return allResources.sort((a, b) => {
       if (a.date < b.date) {
         return 1;
       } else {
@@ -148,7 +142,7 @@ export function getAllResources(language = null) {
 }
 
 // Get a single resource by slug
-export async function getResourceBySlug(slug, language = null) {
+export async function getResourceBySlug(slug) {
   // Only run server-side
   if (typeof window !== 'undefined') {
     console.warn('getResourceBySlug() should only be called on the server side');
@@ -179,11 +173,6 @@ export async function getResourceBySlug(slug, language = null) {
 
   // Get language (default to English if not specified)
   const resourceLanguage = data.language || LANGUAGES.EN;
-
-  // If a specific language is requested and doesn't match, return null
-  if (language && resourceLanguage !== language) {
-    return null;
-  }
 
   // Combine the data with the slug and content
   return {

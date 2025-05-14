@@ -7,6 +7,7 @@ categories: ['torneos']
 featured: false
 draft: false
 author: 'OnChess'
+language: 'es'
 ---
 
 Durante el último fin de semana participé en un torneo oficial. Las expectativas eran importantes vistos los resultados del año anterior. Y el resultado no ha podido ser peor. Tres ceros en las tres primeras partidas. No recuerdo un torneo con peor actuación.

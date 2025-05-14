@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import BlogList from '@/components/BlogList';
+import BlogHeader from '@/components/Blog/BlogHeader';
 import { useLanguage } from '@/lib/languageContext';
 
 export default function BlogClientPage({ initialBlogs, initialLanguage }) {
-  const { t, language, changeLanguage } = useLanguage();
+  const { language, changeLanguage } = useLanguage();
   const [blogs, setBlogs] = useState(initialBlogs);
 
   // Update language preferences if URL param is provided
@@ -30,19 +31,7 @@ export default function BlogClientPage({ initialBlogs, initialLanguage }) {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
-      <section className="hero-gradient py-16 md:py-24">
-        <div className="saas-container">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block px-3 py-1 text-sm font-medium text-primary bg-blue-100 dark:bg-blue-900 rounded-full mb-4">
-              {t('blog.label')}
-            </span>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{t('blog.title')}</h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              {t('blog.description')}
-            </p>
-          </div>
-        </div>
-      </section>
+      <BlogHeader />
 
       {/* Blog Content */}
       <section className="saas-section bg-white dark:bg-gray-900">

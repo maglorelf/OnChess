@@ -7,6 +7,7 @@ categories: ['torneos']
 featured: true
 draft: false
 author: 'OnChess'
+language: 'es'
 ---
 
 Con los resultados del TORNEO ANIVERSARIO INCUDE 2024, he conseguido superar los 2000 puntos de ELO FIDE.

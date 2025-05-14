@@ -7,6 +7,7 @@ categories: ['eventos']
 featured: true
 draft: false
 author: 'OnChess'
+language: 'es'
 ---
 
 A partir del 15 de octubre de 2024, comienzo a dar clases de ajedrez en el local da Casa da Cultura de Vila Concepción perteneciente al Concello de Cambre.
