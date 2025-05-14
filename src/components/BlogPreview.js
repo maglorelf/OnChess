@@ -4,9 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PlaceholderImage from './PlaceholderImage';
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/lib/languageContext'; // Import useLanguage
 
 export default function BlogPreview({ title, date, excerpt, slug, coverImage, language }) {
   const [imageError, setImageError] = useState(false);
+  const { translations, t } = useLanguage(); // Get translations and t function
 
   // Format the date consistently between server and client
   const formatDate = dateString => {
@@ -82,7 +84,7 @@ export default function BlogPreview({ title, date, excerpt, slug, coverImage, la
           href={`/blog/${encodedSlug}${language ? `?lang=${language}` : ''}`}
           className="inline-flex items-center font-medium text-primary hover:text-primary-dark transition-colors"
         >
-          Read Article
+          {t('blogPreview.readArticle', {})}{' '}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1"

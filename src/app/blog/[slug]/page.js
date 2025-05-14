@@ -7,6 +7,9 @@ import remarkMath from 'remark-math';
 import rehypeHighlight from 'rehype-highlight';
 import Image from 'next/image';
 import Link from 'next/link';
+// Import translations
+import enTranslations from '@/lib/translations/en';
+import esTranslations from '@/lib/translations/es';
 // Importamos el nuevo componente cliente
 import BlogRenderer from '@/components/BlogRenderer';
 
@@ -94,15 +97,16 @@ export default async function BlogPost({ params, searchParams }) {
 
   // If still not found, return 404
   if (!blogData) {
+    // Get translations based on language
+    const translations = languageParam === 'es' ? esTranslations : enTranslations;
+
     return (
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="text-center">
-          <h1 className="text-3xl font-bold mb-4">Blog Post Not Found</h1>
-          <p className="mb-8">
-            The blog post you&apos;re looking for doesn&apos;t exist or has been moved.
-          </p>
+          <h1 className="text-3xl font-bold mb-4">{translations.blog.postNotFound}</h1>
+          <p className="mb-8">{translations.blog.postNotFoundDesc}</p>
           <Link href="/blog" className="text-primary hover:underline">
-            ← Back to blogs
+            ← {translations.blog.backToBlog}
           </Link>
         </div>
       </div>
@@ -133,6 +137,8 @@ export default async function BlogPost({ params, searchParams }) {
       scope: blogData,
     });
   }
+  // Get translations based on language
+  const translations = languageParam === 'es' ? esTranslations : enTranslations;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
@@ -141,7 +147,7 @@ export default async function BlogPost({ params, searchParams }) {
         href={`/blog${languageParam ? `?lang=${languageParam}` : ''}`}
         className="text-blue-600 dark:text-blue-400 mb-8 inline-block hover:underline"
       >
-        ← {languageParam === 'es' ? 'Volver al blog' : 'Back to blogs'}
+        ← {translations.blog.backToBlog}
       </Link>
       <div className="max-w-none">
         <div className="mb-8 w-full aspect-video relative rounded-lg overflow-hidden">
@@ -162,8 +168,11 @@ export default async function BlogPost({ params, searchParams }) {
         <div className="mb-6 border-b pb-4">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">{blogData.title}</h1>{' '}
           <div className="text-gray-600 dark:text-gray-400 flex flex-wrap gap-4">
+            {' '}
             <span>{new Date(blogData.date).toLocaleDateString()}</span>
-            {blogData.author && <span>By {blogData.author}</span>}
+            {blogData.author && (
+              <span>{translations.blog.authorBy.replace('{author}', blogData.author)}</span>
+            )}
             <span className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 rounded">
               {blogData.fileType === 'mdx' ? 'MDX' : 'Markdown'}
             </span>

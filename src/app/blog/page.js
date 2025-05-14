@@ -10,9 +10,11 @@ export const metadata = {
 };
 
 // Server component
-export default function Blog({ searchParams }) {
+export default async function Blog({ searchParams }) {
+  // Make the function async
   // Get blogs with language from search params
-  const language = searchParams?.lang;
+  const awaitedSearchParams = await searchParams; // Await searchParams
+  const language = awaitedSearchParams?.lang;
   const blogs = getAllBlogs();
 
   return (

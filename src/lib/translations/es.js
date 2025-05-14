@@ -93,7 +93,11 @@ const spanishTranslations = {
     termsOfUse: 'Términos de Uso',
     cookiePolicy: 'Política de Cookies',
     quickLinks: 'Enlaces Rápidos',
+  }, // Blog preview
+  blogPreview: {
+    readArticle: 'Leer Artículo',
   },
+
   // Resources page
   resources: {
     title: 'Recursos de Ajedrez',

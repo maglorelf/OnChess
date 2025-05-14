@@ -92,6 +92,11 @@ const englishTranslations = {
     cookiePolicy: 'Cookie Policy',
     quickLinks: 'Quick Links',
   },
+  // Blog preview
+  blogPreview: {
+    readArticle: 'Read Article',
+  },
+
   // Resources page
   resources: {
     title: 'Chess Resources',
@@ -155,6 +160,9 @@ const englishTranslations = {
     authorBy: 'By {author}',
     postNotFound: 'Post not found',
     postNotFoundDesc: "The blog post you're looking for doesn't exist or has been moved.",
+    blogPreview: {
+      readArticle: 'Read Article',
+    },
   },
 
   // User profiles
