@@ -16,8 +16,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params, searchParams }) {
-  const { slug } = await params;
-  const languageParam = searchParams?.lang;
+  // Await params and searchParams as suggested by the Next.js error messages
+  const awaitedParams = await params;
+  const awaitedSearchParams = await searchParams;
+
+  const { slug } = awaitedParams; // Destructure slug from awaitedParams
+  const languageParam = awaitedSearchParams?.lang;
 
   // Try to get blog data with language preference, fall back if not found
   try {
@@ -74,8 +78,11 @@ function ServerPlaceholder({ text, bgColor = '#3a506b' }) {
 }
 
 export default async function BlogPost({ params, searchParams }) {
-  const { slug } = await params;
-  const languageParam = searchParams?.lang;
+  const awaitedParams = await params;
+  const awaitedSearchParams = await searchParams; // Ensure searchParams is awaited
+
+  const { slug } = awaitedParams; // Use awaitedParams
+  const languageParam = awaitedSearchParams?.lang; // Use awaitedSearchParams
 
   // Try to get blog in preferred language first
   let blogData = getBlogData(slug, languageParam);
