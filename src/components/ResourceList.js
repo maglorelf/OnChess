@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useLanguage } from '@/lib/languageContext';
 import ResourcePreview from '@/components/ResourcePreview';
 import { ALL_TAGS, CATEGORIES, CONTENT_TYPES } from '@/lib/resourceUtils';
 
@@ -12,6 +13,7 @@ const ITEMS_PER_PAGE = 6;
 export default function ResourceList({ resources }) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { t } = useLanguage();
 
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -225,12 +227,12 @@ export default function ResourceList({ resources }) {
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
               />
             </svg>
-          </div>
+          </div>{' '}
           <input
             type="search"
             id="resource-search"
             className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 focus:ring-primary focus:border-primary"
-            placeholder="Search for resources..."
+            placeholder={t('resources.searchPlaceholder')}
             value={searchTerm}
             onChange={handleSearchChange}
           />
@@ -259,21 +261,22 @@ export default function ResourceList({ resources }) {
           )}
         </div>
       </div>
-
-      {/* Filters */}
+      {/* Filters */}{' '}
       <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
         <div className="flex flex-wrap items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold mb-2">Filters</h3>
+          <h3 className="text-lg font-semibold mb-2">{t('resources.filters')}</h3>
           {(selectedTags.length > 0 || selectedCategory || selectedType || searchTerm) && (
             <button onClick={clearFilters} className="text-sm text-primary hover:underline">
-              Clear all filters
+              {t('resources.clearFilters')}
             </button>
           )}
         </div>
         {/* Categories */}
         <div className="mb-4">
           {' '}
-          <h4 className="text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">Category</h4>
+          <h4 className="text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">
+            {t('resources.category')}
+          </h4>
           <div className="flex flex-wrap gap-2">
             {Object.values(CATEGORIES).map(category => (
               <button
@@ -289,12 +292,12 @@ export default function ResourceList({ resources }) {
               </button>
             ))}
           </div>
-        </div>
+        </div>{' '}
         {/* Content Types */}
         <div className="mb-4">
           {' '}
           <h4 className="text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">
-            Content Type
+            {t('resources.contentType')}
           </h4>
           <div className="flex flex-wrap gap-2">
             {Object.values(CONTENT_TYPES).map(type => (
@@ -314,7 +317,9 @@ export default function ResourceList({ resources }) {
         </div>{' '}
         {/* Tags */}
         <div>
-          <h4 className="text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">Tags</h4>
+          <h4 className="text-sm font-medium mb-2 text-gray-600 dark:text-gray-300">
+            {t('resources.tags')}
+          </h4>
           <div className="flex flex-wrap gap-2">
             {ALL_TAGS.map(tag => (
               <button
@@ -332,7 +337,6 @@ export default function ResourceList({ resources }) {
           </div>
         </div>
       </div>
-
       {/* Results count */}
       <div className="mb-6">
         <p className="text-gray-600 dark:text-gray-400">
@@ -341,7 +345,6 @@ export default function ResourceList({ resources }) {
           {totalPages > 1 && ` (Page ${currentPage} of ${totalPages})`}
         </p>
       </div>
-
       {/* Resources grid */}
       {filteredResources.length > 0 ? (
         <>
@@ -458,7 +461,7 @@ export default function ResourceList({ resources }) {
       ) : (
         <div className="text-center py-12 bg-gray-50 dark:bg-gray-800/30 rounded-lg">
           <h3 className="text-xl font-medium text-gray-700 dark:text-gray-300 mb-2">
-            No resources found
+            {t('resources.noResourcesFound')}
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             Try adjusting your filters or check back later for new content.
@@ -467,7 +470,7 @@ export default function ResourceList({ resources }) {
             onClick={clearFilters}
             className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
           >
-            Clear filters
+            {t('resources.clearFilters')}
           </button>
         </div>
       )}

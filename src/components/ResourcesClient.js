@@ -3,10 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { isLoggedIn, getUserData } from '@/lib/userUtils';
-import {
-  getUserAccessLevel,
-  filterResourcesByAccessLevel,
-} from '@/lib/resourceUtils';
+import { getUserAccessLevel, filterResourcesByAccessLevel } from '@/lib/resourceUtils';
 import ResourceList from '@/components/ResourceList';
 import { useLanguage } from '@/lib/languageContext';
 
@@ -29,7 +26,7 @@ export default function ResourcesClient({ initialResources }) {
     if (loggedIn) {
       // Show resources up to user's access level
       let accessibleResources = filterResourcesByAccessLevel(initialResources, accessLevel);
-     
+
       setResources(accessibleResources);
     } else {
       // Not logged in - show only preview of level 1 resources
@@ -52,16 +49,16 @@ export default function ResourcesClient({ initialResources }) {
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             {t('resources.subtitle')}
           </p>
-        </div>
+        </div>{' '}
         {!isLoggedInState && resources.length > 0 && (
           <div className="mb-8 p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
               <div className="mb-4 md:mb-0">
                 <h3 className="font-semibold text-blue-800 dark:text-blue-300">
-                  Sign in to access all resources
+                  {t('resources.signInPrompt')}
                 </h3>{' '}
                 <p className="text-blue-700 dark:text-blue-400 text-sm mt-1">
-                  You&apos;re seeing limited previews. Log in to access full content.
+                  {t('resources.previewMessage')}
                 </p>
               </div>
               <div className="flex gap-4">
@@ -69,13 +66,13 @@ export default function ResourcesClient({ initialResources }) {
                   href="/login"
                   className="inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                 >
-                  Login
+                  {t('common.login')}
                 </Link>
                 <Link
                   href="/register"
                   className="inline-block px-4 py-2 border border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 rounded-md hover:bg-blue-50 dark:hover:bg-blue-900/50 transition-colors"
                 >
-                  Register
+                  {t('common.register')}
                 </Link>
               </div>
             </div>

@@ -92,11 +92,22 @@ const englishTranslations = {
     cookiePolicy: 'Cookie Policy',
     quickLinks: 'Quick Links',
   },
-
   // Resources page
   resources: {
     title: 'Chess Resources',
     subtitle: 'Educational materials to improve your chess',
+    metaTitle: 'Chess Resources - OnChess',
+    metaDescription: 'Educational resources to help you improve your chess skills',
+    loading: 'Loading resources...',
+    searchPlaceholder: 'Search for resources...',
+    filters: 'Filters',
+    clearFilters: 'Clear all filters',
+    category: 'Category',
+    contentType: 'Content Type',
+    tags: 'Tags',
+    noResourcesFound: 'No resources found',
+    signInPrompt: 'Sign in to access all resources',
+    previewMessage: "You're seeing limited previews. Log in to access full content.",
     filterByCategory: 'Filter by Category',
     filterByContentType: 'Filter by Content Type',
     filterByTags: 'Filter by Tags',
@@ -125,12 +136,12 @@ const englishTranslations = {
   },
 
   // Blog page
-  blog: {   
-    label: 'Knowledge Hub',    
+  blog: {
+    label: 'Knowledge Hub',
     description:
       'Articles and insights about chess strategy, history, and online play. Expand your understanding of the game.',
     noEntries: 'No blog entries found.',
-    backToBlog: 'Back to blog',      
+    backToBlog: 'Back to blog',
     readingTime: '{time} min read',
     title: 'Chess Blog',
     subtitle: 'News, articles, and updates from the chess world',

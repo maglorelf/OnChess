@@ -1,16 +1,20 @@
 import { Suspense } from 'react';
 import { getAllResources } from '@/lib/resourceUtils';
 import ResourcesClient from '@/components/ResourcesClient';
+import englishTranslations from '@/lib/translations/en';
+import spanishTranslations from '@/lib/translations/es';
 
 // Loading fallback component
 function ResourcesLoading() {
+  // We have to use English translations since we don't know the language at this point
+  // The client component will handle proper translation once loaded
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Resources</h1>
+          <h1 className="text-4xl font-bold mb-4">{englishTranslations.resources.title}</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Loading resources...
+            {englishTranslations.resources.loading}
           </p>
         </div>
         <div className="animate-pulse">
@@ -35,11 +39,17 @@ function ResourcesLoading() {
   );
 }
 
-// Generate metadata for the page
-export function generateMetadata({ params, searchParams }) {
+// Generate metadata for the page - using only static metadata for simplicity
+// to avoid Next.js issues with searchParams
+export async function generateMetadata() {
+  // Since we can't safely use searchParams in generateMetadata, we'll use
+  // default English translations for the metadata
+  // The actual UI will still be translated based on the user's language preference
+  const translations = englishTranslations;
+
   return {
-    title: 'Chess Resources - OnChess',
-    description: 'Educational resources to help you improve your chess skills',
+    title: translations.resources.metaTitle,
+    description: translations.resources.metaDescription,
   };
 }
 

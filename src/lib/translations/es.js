@@ -94,11 +94,23 @@ const spanishTranslations = {
     cookiePolicy: 'Política de Cookies',
     quickLinks: 'Enlaces Rápidos',
   },
-
   // Resources page
   resources: {
     title: 'Recursos de Ajedrez',
     subtitle: 'Materiales educativos para mejorar tu ajedrez',
+    metaTitle: 'Recursos de Ajedrez - OnChess',
+    metaDescription: 'Recursos educativos para ayudarte a mejorar tus habilidades de ajedrez',
+    loading: 'Cargando recursos...',
+    searchPlaceholder: 'Buscar recursos...',
+    filters: 'Filtros',
+    clearFilters: 'Limpiar todos los filtros',
+    category: 'Categoría',
+    contentType: 'Tipo de Contenido',
+    tags: 'Etiquetas',
+    noResourcesFound: 'No se encontraron recursos',
+    signInPrompt: 'Inicia sesión para acceder a todos los recursos',
+    previewMessage:
+      'Estás viendo vistas previas limitadas. Inicia sesión para acceder al contenido completo.',
     filterByCategory: 'Filtrar por Categoría',
     filterByContentType: 'Filtrar por Tipo de Contenido',
     filterByTags: 'Filtrar por Etiquetas',
@@ -127,7 +139,7 @@ const spanishTranslations = {
   },
 
   // Blog page
-  blog: {      
+  blog: {
     description:
       'Artículos y conocimientos sobre estrategia de ajedrez, historia y juego online. Amplía tu comprensión del juego.',
     noEntries: 'No se encontraron entradas de blog.',
