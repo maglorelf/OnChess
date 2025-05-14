@@ -1,5 +1,13 @@
 'use client';
 
+/**
+ * OnChess Home Page
+ *
+ * This page uses the translation system from the language context.
+ * If changes to translations aren't showing up, add ?refresh=true to the URL
+ * Example: http://localhost:3000/?refresh=true
+ */
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { getAllBlogs } from '@/lib/mdUtils';
@@ -10,7 +18,6 @@ import { useState, useEffect } from 'react';
 export default function Home() {
   const { t, language } = useLanguage();
   const [latestBlogs, setLatestBlogs] = useState([]);
-
   // Get the latest blogs based on language
   useEffect(() => {
     // Get all blogs
@@ -29,6 +36,23 @@ export default function Home() {
 
     setLatestBlogs(sortedBlogs);
   }, [language]);
+  // Reset cache approach based on URL parameter
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Use URL parameter approach for manual cache clearing
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('refresh')) {
+        // Create a clean URL without the refresh parameter
+        const cleanUrl = window.location.pathname;
+
+        // Store timestamp in sessionStorage to track last refresh
+        sessionStorage.setItem('lastCacheRefresh', Date.now().toString());
+
+        // Navigate to the clean URL (history-friendly)
+        window.history.replaceState({}, document.title, cleanUrl);
+      }
+    }
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -74,14 +98,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section>{' '}
       {/* Features Section */}
       <section className="saas-section bg-gray-50 dark:bg-gray-800/50">
         <div className="saas-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why OnChess</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              {t('home.featuresSection.title')}
+            </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Discover a world of chess resources designed to help players of all levels
+              {t('home.featuresSection.subtitle')}
             </p>
           </div>
 
@@ -104,9 +130,9 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-2">Expert Strategies</h3>
+              <h3 className="text-xl font-bold mb-2">{t('home.featuresSection.feature1.title')}</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Learn winning strategies and tactics from chess masters and improve your game.
+                {t('home.featuresSection.feature1.description')}
               </p>
             </div>
 
@@ -128,9 +154,9 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-2">Community Insights</h3>
+              <h3 className="text-xl font-bold mb-2">{t('home.featuresSection.feature2.title')}</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Connect with fellow chess enthusiasts and share your experiences and knowledge.
+                {t('home.featuresSection.feature2.description')}
               </p>
             </div>
 
@@ -152,10 +178,9 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-2">Latest News</h3>
+              <h3 className="text-xl font-bold mb-2">{t('home.featuresSection.feature3.title')}</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Stay updated with the latest trends, tournaments, and developments in the chess
-                world.
+                {t('home.featuresSection.feature3.description')}
               </p>
             </div>
           </div>
@@ -194,81 +219,22 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </section>{' '}
       {/* CTA Section */}
       <section className="saas-section gradient-bg text-white">
         <div className="saas-container">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to improve your chess game?
-            </h2>
-            <p className="text-xl mb-8">
-              Join our community and get access to expert strategies, exclusive tutorials, and
-              connect with fellow chess enthusiasts.
-            </p>{' '}
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('home.ctaSection.title')}</h2>
+            <p className="text-xl mb-8">{t('home.ctaSection.description')}</p>{' '}
             <Link
               href="/blog"
               className="inline-block bg-indigo-800 text-white font-bold py-3 px-8 rounded-full transition-all hover:shadow-lg hover:bg-indigo-700 hover:transform hover:translate-y-[-2px]"
             >
-              Start Learning Today
+              {t('home.ctaSection.button')}
             </Link>
           </div>
         </div>
       </section>
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-800 py-12">
-        <div className="saas-container">
-          <div className="flex flex-wrap justify-center items-center gap-6">
-            <Link
-              className="flex items-center gap-2 hover:text-primary transition-colors"
-              href="/blog"
-            >
-              <Image
-                aria-hidden
-                src="/file.svg"
-                alt="File icon"
-                width={16}
-                height={16}
-                className="dark:invert"
-              />
-              Blog
-            </Link>{' '}
-            <Link
-              className="flex items-center gap-2 hover:text-primary transition-colors"
-              href="/resources"
-            >
-              <Image
-                aria-hidden
-                src="/window.svg"
-                alt="Window icon"
-                width={16}
-                height={16}
-                className="dark:invert"
-              />
-              Resources
-            </Link>
-            <a
-              className="flex items-center gap-2 hover:text-primary transition-colors"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                aria-hidden
-                src="/globe.svg"
-                alt="Globe icon"
-                width={16}
-                height={16}
-                className="dark:invert"
-              />
-              Visit Us
-            </a>
-          </div>
-          <div className="text-center mt-6 text-sm text-gray-500">
-            © {new Date().getFullYear()} OnChess. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

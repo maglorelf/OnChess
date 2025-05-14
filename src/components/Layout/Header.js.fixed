@@ -101,10 +101,10 @@ export default function Header() {
 
       if (loggedIn) {
         const userData = getUserData();
-
+        
         if (userData) {
           setMemberData(userData);
-        }
+        } 
         // If no userData but still logged in, fetch from server
         // but limit to initial mount to prevent infinite loops
         else if (typeof window !== 'undefined') {
@@ -130,7 +130,7 @@ export default function Header() {
         setMemberData(userData);
       }
     });
-
+    
     return () => {
       window.removeEventListener('focus', handleFocus);
       unsubscribe(); // Clean up subscription
