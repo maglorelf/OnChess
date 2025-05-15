@@ -138,6 +138,9 @@ const englishTranslations = {
     pgnFileDesc: 'Open this file in your preferred chess analysis software.',
     pdfDocumentView: 'View PDF',
     interactivePuzzle: 'Interactive Puzzle',
+    viewResource: 'View Resource',
+    showingCount: 'Showing {count} of {total} {resourceWord}',
+
   },
 
   // Blog page

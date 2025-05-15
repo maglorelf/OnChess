@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { isLoggedIn, getUserData } from '@/lib/userUtils';
 import { getUserAccessLevel, ACCESS_LEVELS } from '@/lib/resourceUtils';
+import { useLanguage } from '@/lib/languageContext';
 
 export default function ResourcePreview({
   title,
@@ -125,6 +126,8 @@ export default function ResourcePreview({
     }
   };
 
+  const { t } = useLanguage();
+
   return (
     <div
       className={`group relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 transition-all ${
@@ -195,7 +198,7 @@ export default function ResourcePreview({
             href={`/resources/${slug}`}
             className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
           >
-            View Resource
+            {t('resources.viewResource')}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 ml-1"

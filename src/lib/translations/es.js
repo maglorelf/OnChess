@@ -140,6 +140,10 @@ const spanishTranslations = {
     pgnFileDesc: 'Abre este archivo en tu software de análisis de ajedrez preferido.',
     pdfDocumentView: 'Ver PDF',
     interactivePuzzle: 'Ejercicio Interactivo',
+    viewResource: 'Ver Recurso',
+    showingCount: 'Mostrando {count} de {total} {resourceWord}',
+    resource: 'recurso',
+    resources: 'recursos',
   },
 
   // Blog page

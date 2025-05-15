@@ -85,7 +85,7 @@ export default function ResourceDetailView({ resource }) {
                   clipRule="evenodd"
                 />
               </svg>
-              Back to resources
+              {t('resources.backToResources')}
             </Link>
           </div>
 
@@ -260,7 +260,7 @@ export default function ResourceDetailView({ resource }) {
                 clipRule="evenodd"
               />
             </svg>
-            Back to resources
+            {t('resources.backToResources')}
           </Link>
         </div>
 
@@ -315,7 +315,7 @@ export default function ResourceDetailView({ resource }) {
             <div className="flex justify-between">
               <div></div>
               <Link href="/resources" className="text-primary hover:underline">
-                Back to all resources
+                {t('resources.backToResources')}
               </Link>
             </div>
           </div>

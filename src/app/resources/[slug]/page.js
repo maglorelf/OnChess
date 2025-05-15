@@ -3,6 +3,8 @@ import { Suspense } from 'react';
 import { getResourceBySlug } from '@/lib/resourceUtils';
 import ResourceDetail from '@/components/ResourceDetail';
 import Link from 'next/link';
+import { useLanguage } from '@/lib/languageContext';
+import ResourceNotFoundClient from '@/components/ResourceNotFoundClient';
 
 // Loading component for Suspense
 function ResourceLoading() {
@@ -26,21 +28,7 @@ function ResourceLoading() {
 
 // Not Found Component
 function ResourceNotFound() {
-  // This is a server component, so we can't use useLanguage directly
-  // The ResourceDetailView will handle translations for this on the client
-  return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto text-center">
-        <h1 className="text-2xl font-bold mb-4">Resource not found</h1>
-        <p className="mb-8">
-          The resource you&apos;re looking for doesn&apos;t exist or has been moved.
-        </p>
-        <Link href="/resources" className="text-primary hover:underline">
-          Back to resources
-        </Link>
-      </div>
-    </div>
-  );
+  return <ResourceNotFoundClient />;
 }
 
 // Server Component to generate metadata

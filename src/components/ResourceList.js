@@ -340,8 +340,14 @@ export default function ResourceList({ resources }) {
       {/* Results count */}
       <div className="mb-6">
         <p className="text-gray-600 dark:text-gray-400">
-          Showing {paginatedResources.length} of {filteredResources.length}{' '}
-          {filteredResources.length === 1 ? 'resource' : 'resources'}
+          {t('resources.showingCount', {
+            count: paginatedResources.length,
+            total: filteredResources.length,
+            resourceWord:
+              filteredResources.length === 1 ? t('resources.resource') : t('resources.resources'),
+            page: currentPage,
+            totalPages: totalPages,
+          })}
           {totalPages > 1 && ` (Page ${currentPage} of ${totalPages})`}
         </p>
       </div>
