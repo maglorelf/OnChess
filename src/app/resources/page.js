@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { getAllResources } from '@/lib/resourceUtils';
 import ResourcesClient from '@/components/ResourcesClient';
 import englishTranslations from '@/lib/translations/en';
-import spanishTranslations from '@/lib/translations/es';
 
 // Loading fallback component
 function ResourcesLoading() {
