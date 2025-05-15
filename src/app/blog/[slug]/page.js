@@ -7,11 +7,14 @@ import remarkMath from 'remark-math';
 import rehypeHighlight from 'rehype-highlight';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Suspense } from 'react';
+
 // Import translations
 import enTranslations from '@/lib/translations/en';
 import esTranslations from '@/lib/translations/es';
-// Importamos el nuevo componente cliente
+// Import the component client
 import BlogRenderer from '@/components/BlogRenderer';
+import BlogPostClient from '@/components/BlogPostClient';
 
 export async function generateStaticParams() {
   // Return array of { slug } objects for static routing
@@ -80,33 +83,22 @@ function ServerPlaceholder({ text, bgColor = '#3a506b' }) {
   );
 }
 
-export default async function BlogPost({ params, searchParams }) {
+export default async function BlogPost({ params }) {
   const awaitedParams = await params;
-  const awaitedSearchParams = await searchParams; // Ensure searchParams is awaited
+  const { slug } = awaitedParams;
 
-  const { slug } = awaitedParams; // Use awaitedParams
-  const languageParam = awaitedSearchParams?.lang; // Use awaitedSearchParams
-
-  // Try to get blog in preferred language first
-  let blogData = getBlogData(slug, languageParam);
-
-  // If not found with language preference, try without language filter
-  if (!blogData && languageParam) {
-    blogData = getBlogData(slug);
-  }
-
-  // If still not found, return 404
+  // Get all available blog data (we'll filter by language on the client)
+  let blogData = getBlogData(slug);
+  // If not found, return 404
   if (!blogData) {
-    // Get translations based on language
-    const translations = languageParam === 'es' ? esTranslations : enTranslations;
-
+    // We'll use English translations for server component
     return (
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="text-center">
-          <h1 className="text-3xl font-bold mb-4">{translations.blog.postNotFound}</h1>
-          <p className="mb-8">{translations.blog.postNotFoundDesc}</p>
+          <h1 className="text-3xl font-bold mb-4">{enTranslations.blog.postNotFound}</h1>
+          <p className="mb-8">{enTranslations.blog.postNotFoundDesc}</p>
           <Link href="/blog" className="text-primary hover:underline">
-            ← {translations.blog.backToBlog}
+            ← {enTranslations.blog.backToBlog}
           </Link>
         </div>
       </div>
@@ -137,60 +129,9 @@ export default async function BlogPost({ params, searchParams }) {
       scope: blogData,
     });
   }
-  // Get translations based on language
-  const translations = languageParam === 'es' ? esTranslations : enTranslations;
-
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      {' '}
-      <Link
-        href={`/blog${languageParam ? `?lang=${languageParam}` : ''}`}
-        className="text-blue-600 dark:text-blue-400 mb-8 inline-block hover:underline"
-      >
-        ← {translations.blog.backToBlog}
-      </Link>
-      <div className="max-w-none">
-        <div className="mb-8 w-full aspect-video relative rounded-lg overflow-hidden">
-          {blogData.coverImage ? (
-            <Image
-              src={blogData.coverImage}
-              alt={blogData.title}
-              fill
-              style={{ objectFit: 'cover' }}
-              className="rounded-lg"
-              priority
-            />
-          ) : (
-            <ServerPlaceholder text={blogData.title} bgColor={bgColor} />
-          )}
-        </div>
-
-        <div className="mb-6 border-b pb-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">{blogData.title}</h1>{' '}
-          <div className="text-gray-600 dark:text-gray-400 flex flex-wrap gap-4">
-            {' '}
-            <span>{new Date(blogData.date).toLocaleDateString()}</span>
-            {blogData.author && (
-              <span>{translations.blog.authorBy.replace('{author}', blogData.author)}</span>
-            )}
-            <span className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 rounded">
-              {blogData.fileType === 'mdx' ? 'MDX' : 'Markdown'}
-            </span>
-            {blogData.language && (
-              <span className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded uppercase">
-                {blogData.language}
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Usamos el nuevo componente BlogRenderer */}
-        <BlogRenderer
-          fileType={blogData.fileType}
-          source={serializedMDX}
-          content={blogData.content}
-        />
-      </div>
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <BlogPostClient blogData={blogData} serializedMDX={serializedMDX} bgColor={bgColor} />
+    </Suspense>
   );
 }

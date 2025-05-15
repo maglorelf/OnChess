@@ -5,16 +5,9 @@ import BlogList from '@/components/BlogList';
 import BlogHeader from '@/components/Blog/BlogHeader';
 import { useLanguage } from '@/lib/languageContext';
 
-export default function BlogClientPage({ initialBlogs, initialLanguage }) {
-  const { language, changeLanguage } = useLanguage();
+export default function BlogClientPage({ initialBlogs }) {
+  const { language } = useLanguage();
   const [blogs, setBlogs] = useState(initialBlogs);
-
-  // Update language preferences if URL param is provided
-  useEffect(() => {
-    if (initialLanguage && initialLanguage !== language) {
-      changeLanguage(initialLanguage);
-    }
-  }, [initialLanguage, language, changeLanguage]);
 
   // Resort blogs when language changes
   useEffect(() => {

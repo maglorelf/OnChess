@@ -10,16 +10,13 @@ export const metadata = {
 };
 
 // Server component
-export default async function Blog({ searchParams }) {
-  // Make the function async
-  // Get blogs with language from search params
-  const awaitedSearchParams = await searchParams; // Await searchParams
-  const language = awaitedSearchParams?.lang;
+export default function Blog() {
+  // Get all blogs - language filtering will happen client-side
   const blogs = getAllBlogs();
 
   return (
     <Suspense fallback={<BlogLoadingState />}>
-      <BlogClientPage initialBlogs={blogs} initialLanguage={language} />
+      <BlogClientPage initialBlogs={blogs} />
     </Suspense>
   );
 }

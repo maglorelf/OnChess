@@ -8,6 +8,7 @@ import { isLoggedIn, getUserData } from '@/lib/userUtils';
 import { canAccessResource, ACCESS_LEVELS } from '@/lib/resourceUtils';
 import ResourceMarkdownContent from '@/components/ResourceMarkdownContent';
 import { useLanguage } from '@/lib/languageContext';
+import { formatDateYYYYMMDD } from '@/contentUtils';
 
 export default function ResourceDetailView({ resource }) {
   const router = useRouter();
@@ -282,11 +283,7 @@ export default function ResourceDetailView({ resource }) {
 
             {resource.date && (
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                {new Date(resource.date).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
+                {formatDateYYYYMMDD(resource.date)}
               </p>
             )}
 

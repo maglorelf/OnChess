@@ -5,6 +5,7 @@ import Image from 'next/image';
 import PlaceholderImage from './PlaceholderImage';
 import { useEffect, useState } from 'react';
 import { useLanguage } from '@/lib/languageContext'; // Import useLanguage
+import { formatDateYYYYMMDD } from '@/contentUtils';
 
 export default function BlogPreview({ title, date, excerpt, slug, coverImage, language }) {
   const [imageError, setImageError] = useState(false);
@@ -12,12 +13,7 @@ export default function BlogPreview({ title, date, excerpt, slug, coverImage, la
 
   // Format the date consistently between server and client
   const formatDate = dateString => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    });
+    return formatDateYYYYMMDD(dateString);
   };
 
   // Ensure the slug is properly encoded for URLs
@@ -71,17 +67,14 @@ export default function BlogPreview({ title, date, excerpt, slug, coverImage, la
             </div>
           )}
         </div>{' '}
-        <Link
-          href={`/blog/${encodedSlug}${language ? `?lang=${language}` : ''}`}
-          className="group-hover:text-primary transition-colors"
-        >
+        <Link href={`/blog/${encodedSlug}`} className="group-hover:text-primary transition-colors">
           <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
             {title}
           </h3>
         </Link>
         <p className="text-gray-600 dark:text-gray-300 line-clamp-3 mb-4">{excerpt}</p>{' '}
         <Link
-          href={`/blog/${encodedSlug}${language ? `?lang=${language}` : ''}`}
+          href={`/blog/${encodedSlug}`}
           className="inline-flex items-center font-medium text-primary hover:text-primary-dark transition-colors"
         >
           {t('blogPreview.readArticle', {})}{' '}
