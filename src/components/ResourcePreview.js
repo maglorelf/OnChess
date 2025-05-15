@@ -128,6 +128,28 @@ export default function ResourcePreview({
 
   const { t } = useLanguage();
 
+  // Get translated category label
+  let categoryLabel = '';
+  if (category === 'theory') categoryLabel = t('resources.categoryTheory');
+  else if (category === 'practice') categoryLabel = t('resources.categoryPractice');
+  else categoryLabel = category;
+
+  // Get translated content type label
+  let contentTypeLabel = '';
+  if (contentType === 'text') contentTypeLabel = t('resources.contentTypeText');
+  else if (contentType === 'video') contentTypeLabel = t('resources.contentTypeVideo');
+  else if (contentType === 'puzzle') contentTypeLabel = t('resources.contentTypePuzzle');
+  else if (contentType === 'pgn') contentTypeLabel = t('resources.contentTypePgn');
+  else if (contentType === 'pdf') contentTypeLabel = t('resources.contentTypePdf');
+  else contentTypeLabel = contentType;
+
+  // Helper for translated tag
+  const getTagLabel = tag => {
+    let label = t(`resources.tag_${tag}`);
+    if (label.startsWith('resources.tag_')) label = tag;
+    return label;
+  };
+
   return (
     <div
       className={`group relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 transition-all ${
@@ -155,7 +177,7 @@ export default function ResourcePreview({
               key={tag}
               className="text-xs font-medium bg-white/20 backdrop-blur-sm text-white px-2 py-1 rounded-full"
             >
-              {tag}
+              {getTagLabel(tag)}
             </span>
           ))}
           {tags?.length > 2 && (
@@ -175,11 +197,11 @@ export default function ResourcePreview({
         {/* Category and Type */}
         <div className="absolute bottom-2 left-2 flex items-center">
           <span className="text-xs font-medium bg-white/20 backdrop-blur-sm text-white px-2 py-1 rounded-full capitalize mr-1">
-            {category}
+            {categoryLabel}
           </span>
           <span className="flex items-center text-xs font-medium bg-white/20 backdrop-blur-sm text-white px-2 py-1 rounded-full">
             {getContentTypeIcon(contentType)}
-            {contentType}
+            {contentTypeLabel}
           </span>
         </div>
       </div>

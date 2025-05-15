@@ -278,19 +278,26 @@ export default function ResourceList({ resources }) {
             {t('resources.category')}
           </h4>
           <div className="flex flex-wrap gap-2">
-            {Object.values(CATEGORIES).map(category => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(prev => (prev === category ? '' : category))}
-                className={`px-3 py-1 text-sm rounded-full capitalize transition-colors ${
-                  selectedCategory === category
-                    ? 'bg-primary text-gray-700 font-bold border-2 border-white outline outline-2 outline-primary shadow-md'
-                    : 'bg-gray-200 text-slate-900 dark:bg-gray-700 dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-600 border border-transparent'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+            {Object.values(CATEGORIES).map(category => {
+              // Map canonical category to translation key
+              let label = '';
+              if (category === 'theory') label = t('resources.categoryTheory');
+              else if (category === 'practice') label = t('resources.categoryPractice');
+              else label = category;
+              return (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(prev => (prev === category ? '' : category))}
+                  className={`px-3 py-1 text-sm rounded-full capitalize transition-colors ${
+                    selectedCategory === category
+                      ? 'bg-primary text-gray-700 font-bold border-2 border-white outline outline-2 outline-primary shadow-md'
+                      : 'bg-gray-200 text-slate-900 dark:bg-gray-700 dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-600 border border-transparent'
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </div>{' '}
         {/* Content Types */}
@@ -300,19 +307,29 @@ export default function ResourceList({ resources }) {
             {t('resources.contentType')}
           </h4>
           <div className="flex flex-wrap gap-2">
-            {Object.values(CONTENT_TYPES).map(type => (
-              <button
-                key={type}
-                onClick={() => setSelectedType(prev => (prev === type ? '' : type))}
-                className={`px-3 py-1 text-sm rounded-full capitalize transition-colors ${
-                  selectedType === type
-                    ? 'bg-primary text-gray-700 font-bold border-2 border-white outline outline-2 outline-primary shadow-md'
-                    : 'bg-gray-200 text-slate-900 dark:bg-gray-700 dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-600 border border-transparent'
-                }`}
-              >
-                {type}
-              </button>
-            ))}
+            {Object.values(CONTENT_TYPES).map(type => {
+              // Map canonical content type to translation key
+              let label = '';
+              if (type === 'text') label = t('resources.contentTypeText');
+              else if (type === 'video') label = t('resources.contentTypeVideo');
+              else if (type === 'puzzle') label = t('resources.contentTypePuzzle');
+              else if (type === 'pgn') label = t('resources.contentTypePgn');
+              else if (type === 'pdf') label = t('resources.contentTypePdf');
+              else label = type;
+              return (
+                <button
+                  key={type}
+                  onClick={() => setSelectedType(prev => (prev === type ? '' : type))}
+                  className={`px-3 py-1 text-sm rounded-full capitalize transition-colors ${
+                    selectedType === type
+                      ? 'bg-primary text-gray-700 font-bold border-2 border-white outline outline-2 outline-primary shadow-md'
+                      : 'bg-gray-200 text-slate-900 dark:bg-gray-700 dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-600 border border-transparent'
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </div>{' '}
         {/* Tags */}
@@ -321,19 +338,24 @@ export default function ResourceList({ resources }) {
             {t('resources.tags')}
           </h4>
           <div className="flex flex-wrap gap-2">
-            {ALL_TAGS.map(tag => (
-              <button
-                key={tag}
-                onClick={() => toggleTag(tag)}
-                className={`px-3 py-1 text-sm rounded-full transition-colors ${
-                  selectedTags.includes(tag)
-                    ? 'bg-primary text-gray-700 font-bold border-2 border-white outline outline-2 outline-primary shadow-md'
-                    : 'bg-gray-200 text-slate-900 dark:bg-gray-700 dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-600 border border-transparent'
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
+            {ALL_TAGS.map(tag => {
+              // Try to translate tag, fallback to raw tag if not found
+              let label = t(`resources.tag_${tag}`);
+              if (label.startsWith('resources.tag_')) label = tag;
+              return (
+                <button
+                  key={tag}
+                  onClick={() => toggleTag(tag)}
+                  className={`px-3 py-1 text-sm rounded-full transition-colors ${
+                    selectedTags.includes(tag)
+                      ? 'bg-primary text-gray-700 font-bold border-2 border-white outline outline-2 outline-primary shadow-md'
+                      : 'bg-gray-200 text-slate-900 dark:bg-gray-700 dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-600 border border-transparent'
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>

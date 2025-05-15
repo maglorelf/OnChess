@@ -140,7 +140,18 @@ const englishTranslations = {
     interactivePuzzle: 'Interactive Puzzle',
     viewResource: 'View Resource',
     showingCount: 'Showing {count} of {total} {resourceWord}',
-
+    tag_initiation: 'Initiation',
+    tag_medium: 'Intermediate',
+    tag_advance: 'Advanced',
+    tag_opening: 'Opening',
+    tag_middlegame: 'Middlegame',
+    tag_ending: 'Ending',
+    tag_test: 'Test',
+    tag_game: 'Game',
+    tag_tactics: 'Tactics',
+    tag_strategy: 'Strategy',
+    tag_endgame: 'Endgame',
+    tag_analysis: 'Analysis',
   },
 
   // Blog page

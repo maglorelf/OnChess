@@ -46,6 +46,28 @@ export default function ResourceDetailView({ resource }) {
     checkAccess();
   }, [resource, router]);
 
+  // Get translated category label
+  let categoryLabel = '';
+  if (resource.category === 'theory') categoryLabel = t('resources.categoryTheory');
+  else if (resource.category === 'practice') categoryLabel = t('resources.categoryPractice');
+  else categoryLabel = resource.category;
+
+  // Get translated content type label
+  let contentTypeLabel = '';
+  if (resource.contentType === 'text') contentTypeLabel = t('resources.contentTypeText');
+  else if (resource.contentType === 'video') contentTypeLabel = t('resources.contentTypeVideo');
+  else if (resource.contentType === 'puzzle') contentTypeLabel = t('resources.contentTypePuzzle');
+  else if (resource.contentType === 'pgn') contentTypeLabel = t('resources.contentTypePgn');
+  else if (resource.contentType === 'pdf') contentTypeLabel = t('resources.contentTypePdf');
+  else contentTypeLabel = resource.contentType;
+
+  // Helper for translated tag
+  const getTagLabel = tag => {
+    let label = t(`resources.tag_${tag}`);
+    if (label.startsWith('resources.tag_')) label = tag;
+    return label;
+  };
+
   // Render loading state
   if (loading) {
     return (
@@ -203,7 +225,7 @@ export default function ResourceDetailView({ resource }) {
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
-                      <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                      <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 005.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                     </svg>
                     {t('resources.pdfDocumentView')}
                   </a>
@@ -295,11 +317,21 @@ export default function ResourceDetailView({ resource }) {
                     href={`/resources?tags=${tag}`}
                     className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-sm rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                   >
-                    {tag}
+                    {getTagLabel(tag)}
                   </Link>
                 ))}
               </div>
             )}
+
+            {/* Show category and content type */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full">
+                {categoryLabel}
+              </span>
+              <span className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full">
+                {contentTypeLabel}
+              </span>
+            </div>
 
             {resource.excerpt && (
               <p className="text-xl text-gray-700 dark:text-gray-300 font-medium">

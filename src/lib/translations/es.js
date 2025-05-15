@@ -144,6 +144,18 @@ const spanishTranslations = {
     showingCount: 'Mostrando {count} de {total} {resourceWord}',
     resource: 'recurso',
     resources: 'recursos',
+    tag_initiation: 'Iniciación',
+    tag_medium: 'Intermedio',
+    tag_advance: 'Avanzado',
+    tag_opening: 'Apertura',
+    tag_middlegame: 'Medio juego',
+    tag_ending: 'Final',
+    tag_test: 'Test',
+    tag_game: 'Partida',
+    tag_tactics: 'Tácticas',
+    tag_strategy: 'Estrategia',
+    tag_endgame: 'Finales',
+    tag_analysis: 'Análisis',
   },
 
   // Blog page
