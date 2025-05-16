@@ -13,6 +13,8 @@ import {
 import { useLanguage } from '@/lib/languageContext';
 import LanguageSelector from '@/components/LanguageSelector';
 
+const ROOK_API_BASE_URL = process.env.ROOK_API_BASE_URL;
+
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
@@ -25,7 +27,7 @@ export default function Header() {
   const fetchMemberData = useCallback(async (email, token) => {
     try {
       const memberResponse = await fetch(
-        `https://rook.escaques.com/Member/ByEmail/${encodeURIComponent(email)}`,
+        `${ROOK_API_BASE_URL}/Member/ByEmail/${encodeURIComponent(email)}`,
         {
           method: 'GET',
           headers: {
@@ -57,7 +59,7 @@ export default function Header() {
 
     try {
       // Verify the session with the server
-      const response = await fetch('https://rook.escaques.com/user/current', {
+      const response = await fetch(`${ROOK_API_BASE_URL}/user/current`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -142,7 +144,7 @@ export default function Header() {
     try {
       const authToken = typeof window !== 'undefined' ? localStorage.getItem('authToken') : null;
       if (authToken) {
-        await fetch('https://rook.escaques.com/logout', {
+        await fetch(`${ROOK_API_BASE_URL}/logout`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${authToken}`,

@@ -34,7 +34,7 @@ export default function HeroSection() {
             <div className="relative w-full max-w-md">
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-accent/10 rounded-full blur-2xl"></div>
               <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
-              <div className="relative z-10 rounded-xl overflow-hidden shadow-xl">
+              <div className="relative z-10  overflow-hidden">
                 <Image
                   src="/logo-on-chess-text.png"
                   alt="OnChess Logo"

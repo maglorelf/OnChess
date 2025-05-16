@@ -1,5 +1,7 @@
 // Utils for handling user data and authentication
 
+const ROOK_API_BASE_URL = process.env.ROOK_API_BASE_URL;
+
 // Event system for auth state changes
 const authEventListeners = [];
 
@@ -119,7 +121,7 @@ export async function refreshUserData(email) {
 
   try {
     const memberResponse = await fetch(
-      `https://rook.escaques.com/Member/ByEmail/${encodeURIComponent(email)}`,
+      `${ROOK_API_BASE_URL}/Member/ByEmail/${encodeURIComponent(email)}`,
       {
         method: 'GET',
         headers: {

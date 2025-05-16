@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
+const ROOK_API_BASE_URL = process.env.ROOK_API_BASE_URL;
+
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -44,7 +46,7 @@ export default function RegisterPage() {
     }
 
     try {
-      const response = await fetch('https://rook.escaques.com/register', {
+      const response = await fetch(`${ROOK_API_BASE_URL}/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
