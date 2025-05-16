@@ -1,94 +1,87 @@
-<h1 align=center>Tau On Chess</h1>
-<div align=center>
-  <a  href="https://github.com/maglor_elf/OnChess">
-    <img src="public\images\logo-on-chess-text.png" alt="Logo" width="69" height="85">
-  </a>
-</div>
-<p align=center>This is the public repository of the Tauideas website. Tauideas is a trademark without any commercial purposes to show my little projects and learnings in different languages.</p>
-<h4 align="center">
-    <a target="_blank" href="https://github.com/maglor_elf/OnChess" rel="nofollow">Source Code</a>
-    ·
-    <a target="_blank" href="https://onchess.tauideas.tech" rel="nofollow">View website</a>
-    ·
-    <a target="_blank" href="https://github.com/maglor_elf/OnChess/issues" rel="nofollow">Report Bug</a>
-    ·
-    <a target="_blank" href="https://github.com/maglor_elf/OnChess/issues" rel="nofollow">Request Feature</a>
-  </p>
+# Tau On Chess
 
-</h2>
-<p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%402.0.11" alt="Framework">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=2.0&color=000&logo=astro" />
-  </a>
+This is a [Next.js](https://nextjs.org) project that serves as the official repository for the Tauideas website. Tauideas is a trademark without any commercial purposes to show my little projects and learnings in different languages.
 
-  <a href="https://github.com/maglorelf/OnChess/main/LICENSE">
-    <img src="https://img.shields.io/github/license/maglorelf/OnChess" alt="license"></a>
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![code size](https://img.shields.io/github/languages/code-size/maglorelf/OnChess)](https://github.com/maglorelf/OnChess)
+[![contributors](https://img.shields.io/github/contributors/maglorelf/OnChess)](https://github.com/maglorelf/OnChess/graphs/contributors)
 
-  <img src="https://img.shields.io/github/languages/code-size/maglorelf/OnChess" alt="code size">
+[Source Code](https://github.com/maglorelf/OnChess) · [View website](https://onchess.tauideas.tech) · [Report Bug](https://github.com/maglorelf/OnChess/issues) · [Request Feature](https://github.com/maglorelf/OnChess/issues)
 
-  <a href="https://github.com/maglorelf/OnChess/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/maglorelf/OnChess" alt="contributors"></a>
-</p>
+## Built With
 
-<!-- ABOUT THE PROJECT -->
-### Built With
+- [Next.js](https://nextjs.org)
 
-* [Astro](https://astro.build/)
+## Getting Started
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+First, run the development server:
 
-<!-- installation -->
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
 ## Installation
 
 After downloading the project, you have some prerequisites to install. Then you can run it on your localhost. You can view the package.json file to see which scripts are included.
 
 ### Install prerequisites (once for a machine)
 
-- **Node Installation:** [Install node js](https://nodejs.org/en/download/) [Recommended LTS version]
+- Node Installation: [Install node js](https://nodejs.org/) [Recommended LTS version]
 
 ### Local setup
 
-After successfully installing those dependencies, open this template with any IDE [[VS Code](https://code.visualstudio.com/) recommended], and then open the internal terminal of IDM [vs code shortcut <code>ctrl/cmd+\`</code>]
+After successfully installing those dependencies, open this template with any IDE [VS Code recommended], and then open the internal terminal of IDM [vs code shortcut ctrl/cmd+`]
 
 - Install dependencies
-
-```
-npm install
-```
-
+  ```bash
+  npm install
+  ```
 - Run locally
+  ```bash
+  npm run dev
+  ```
 
-```
-npm run dev
-```
-
-After that, it will open up a preview of the template in your default browser, watch for changes to source files, and live-reload the browser when changes are saved.
-
-## Production Build
+### Production Build
 
 After finishing all the customization, you can create a production build by running this command.
 
-```
+```bash
 npm run build
 ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
 ## Roadmap
-- This is a little blog. In next few months more functionality will be added
 
-See the [open issues](https://github.com/maglor_elf/OnChess/issues) for a full list of proposed features (and known issues).
+- This is a little blog. In the next few months more functionality will be added
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+See the [open issues](https://github.com/maglorelf/OnChess/issues) for a full list of proposed features (and known issues).
 
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-You can use the structure of the project, but I the articles are by my property.
-
+You can use the structure of the project, but the articles are my property.
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
@@ -97,25 +90,14 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 ## License
 
-Copyright (c) 2024 - Present, Designed & Developed by [Marcos J. Martinez](https://onchess.tauideas.tech)
-
-**Code License:** Released under the [MIT](https://github.com/maglorelf/OnChess/main/LICENSE) license.
-
-Template based in [Pinwheel theme](https://github.com/themefisher/pinwheel-astro)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+Marcos J. Martinez
+Code License: Released under the [MIT](https://opensource.org/licenses/MIT) license.
 
 ## Contact
-Twitter - Marcos J. Martinez Ramos- [@maglor_elf](https://twitter.com/maglor_elf) 
 
-Linkedin - [Marcos J. Martinez Ramos](https://www.linkedin.com/in/marcos-javier-martinez-ramos/) 
-
+Twitter - Marcos J. Martinez Ramos- [@maglor_elf](https://twitter.com/maglor_elf)
+Linkedin - [Marcos J. Martinez Ramos](https://www.linkedin.com/in/marcos-jose-martinez-ramos-0a5b1b86/)
 Project Repository: [https://github.com/maglorelf/OnChess](https://github.com/maglorelf/OnChess)
-
-Project Production: [https://onchesss.tauideas.tech](https://onchess.tauideas.tech)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+Project Production: [https://onchesss.tauideas.tech](https://onchesss.tauideas.tech)
