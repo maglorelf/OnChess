@@ -1,6 +1,7 @@
 [build]
   command = "next build"
-  publish = "dist"
+  publish = ".next"
+
 [dev]
   command = "next dev --turbopack"
 
