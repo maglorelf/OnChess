@@ -19,5 +19,5 @@
   to = "/.netlify/functions/next"
   status = 200
 
-[plugins]
+[[plugins]]
   package = "@netlify/plugin-nextjs"
