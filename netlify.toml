@@ -1,20 +1,7 @@
 [build]
   command = "next build"
-  publish = ".next"
-
 [dev]
   command = "next dev --turbopack"
-
-# Redirect all requests to Next.js for SSR
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/next"
-  status = 200
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
