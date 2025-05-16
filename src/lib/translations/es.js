@@ -167,7 +167,7 @@ const spanishTranslations = {
     authorBy: 'Por',
     readingTime: '{time} min de lectura',
     label: 'Centro de Conocimiento',
-    title: 'Blog de Ajedrez1',
+    title: 'Blog de Ajedrez',
     subtitle: 'Noticias, artículos y actualizaciones del mundo del ajedrez',
     readTime: '{time} minutos de lectura',
     publishedOn: 'Publicado el {date}',

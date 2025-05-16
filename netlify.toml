@@ -5,9 +5,6 @@
 [dev]
   command = "next dev --turbopack"
 
-[functions]
-  directory = "netlify/functions"
-
 # Redirect all requests to Next.js for SSR
 [[redirects]]
   from = "/api/*"
