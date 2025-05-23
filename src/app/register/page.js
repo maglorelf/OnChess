@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/lib/languageContext'; // Added import
 
 const BACKEND_API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL;
 
 export default function RegisterPage() {
+  const { translations, t } = useLanguage(); // Added useLanguage hook
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,14 +35,14 @@ export default function RegisterPage() {
 
     // Validate passwords match
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError(t('validation.passwordMatch')); // Replaced hardcoded string
       setIsLoading(false);
       return;
     }
 
     // Validate password strength
     if (formData.password.length < 8) {
-      setError('Password must be at least 8 characters long');
+      setError(t('validation.passwordLength')); // Replaced hardcoded string
       setIsLoading(false);
       return;
     }
@@ -61,13 +63,13 @@ export default function RegisterPage() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Registration failed');
+        throw new Error(errorData.message || t('errors.register')); // Replaced hardcoded string
       }
 
       // Redirect to login page on successful registration
       router.push('/login');
     } catch (err) {
-      setError(err.message || 'An error occurred during registration');
+      setError(err.message || t('errors.registerGeneric')); // Replaced hardcoded string
     } finally {
       setIsLoading(false);
     }
@@ -87,12 +89,12 @@ export default function RegisterPage() {
             />
           </div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
-            Create a new account
+            {t('auth.register')} {/* Replaced hardcoded string */}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-300">
-            Already have an account?{' '}
+            {t('auth.haveAccount')}{' '}
             <Link href="/login" className="font-medium text-blue-400 hover:text-blue-300">
-              Sign in
+              {t('auth.loginButton')} {/* Replaced hardcoded string */}
             </Link>
           </p>
         </div>
@@ -110,7 +112,7 @@ export default function RegisterPage() {
           <div className="rounded-md shadow-sm space-y-3">
             <div>
               <label htmlFor="name" className="sr-only">
-                Full Name
+                {t('auth.fullNameLabel')} {/* Replaced hardcoded string */}
               </label>
               <input
                 id="name"
@@ -120,14 +122,14 @@ export default function RegisterPage() {
                 className="appearance-none rounded-md relative block w-full px-3 py-3 border border-gray-600 
                           bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none 
                           focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Full name"
+                placeholder={t('auth.fullNamePlaceholder')} // Replaced hardcoded string
                 value={formData.name}
                 onChange={handleChange}
               />
             </div>
             <div>
               <label htmlFor="email" className="sr-only">
-                Email address
+                {t('auth.email')} {/* Replaced hardcoded string */}
               </label>
               <input
                 id="email"
@@ -138,14 +140,14 @@ export default function RegisterPage() {
                 className="appearance-none rounded-md relative block w-full px-3 py-3 border border-gray-600 
                           bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none 
                           focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                placeholder={t('auth.emailPlaceholder')} // Replaced hardcoded string
                 value={formData.email}
                 onChange={handleChange}
               />
             </div>
             <div>
               <label htmlFor="password" className="sr-only">
-                Password
+                {t('auth.password')} {/* Replaced hardcoded string */}
               </label>
               <input
                 id="password"
@@ -155,14 +157,14 @@ export default function RegisterPage() {
                 className="appearance-none rounded-md relative block w-full px-3 py-3 border border-gray-600 
                           bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none 
                           focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password (min 8 characters)"
+                placeholder={t('auth.passwordPlaceholderMinChars')} // Replaced hardcoded string
                 value={formData.password}
                 onChange={handleChange}
               />
             </div>
             <div>
               <label htmlFor="confirmPassword" className="sr-only">
-                Confirm Password
+                {t('auth.confirmPassword')} {/* Replaced hardcoded string */}
               </label>
               <input
                 id="confirmPassword"
@@ -172,7 +174,7 @@ export default function RegisterPage() {
                 className="appearance-none rounded-md relative block w-full px-3 py-3 border border-gray-600 
                           bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none 
                           focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Confirm password"
+                placeholder={t('auth.confirmPasswordPlaceholder')} // Replaced hardcoded string
                 value={formData.confirmPassword}
                 onChange={handleChange}
               />
@@ -191,19 +193,19 @@ export default function RegisterPage() {
               {isLoading ? (
                 <span className="inline-block animate-spin rounded-full h-4 w-4 border-t-2 border-white mr-2"></span>
               ) : null}
-              Create account
+              {t('auth.registerButton')} {/* Replaced hardcoded string */}
             </button>
           </div>
         </form>
 
         <div className="text-xs text-gray-400 text-center mt-4">
-          By creating an account, you agree to our{' '}
+          {t('auth.agreeToTermsPrefix')}{' '}
           <Link href="/terminos-de-uso" className="text-blue-400 hover:underline">
-            Terms of Service
+            {t('footer.termsOfUse')}
           </Link>{' '}
-          and{' '}
+          {t('common.and')}{' '}
           <Link href="/politica-de-privacidad" className="text-blue-400 hover:underline">
-            Privacy Policy
+            {t('footer.privacyPolicy')}
           </Link>
         </div>
       </div>

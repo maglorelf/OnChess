@@ -29,6 +29,7 @@ const englishTranslations = {
     logout: 'Logout',
     register: 'Register',
     profile: 'Profile',
+    and: 'and', // Added new key
   },
 
   // Navigation
@@ -209,6 +210,7 @@ const englishTranslations = {
   auth: {
     login: 'Login',
     loginSubtitle: 'Welcome back to OnChess',
+    signInToYourAccount: 'Sign in to your account', // Added new key
     register: 'Create an Account',
     registerSubtitle: 'Join OnChess today',
     email: 'Email',
@@ -223,6 +225,12 @@ const englishTranslations = {
     loginButton: 'Sign In',
     registerButton: 'Sign Up',
     rememberMe: 'Remember me',
+    fullNameLabel: 'Full Name', // Added new key
+    fullNamePlaceholder: 'Full name', // Added new key
+    emailPlaceholder: 'Email address', // Added new key
+    passwordPlaceholderMinChars: 'Password (min 8 characters)', // Added new key
+    confirmPasswordPlaceholder: 'Confirm password', // Added new key
+    agreeToTermsPrefix: 'By creating an account, you agree to our', // Added new key
   },
 
   // Validation and messages
@@ -249,7 +257,10 @@ const englishTranslations = {
   errors: {
     generic: 'Something went wrong. Please try again.',
     login: 'Login failed. Please check your credentials.',
+    loginGeneric: 'Login failed', // Added new key
+    loginErrorGeneric: 'An error occurred during login', // Added new key
     register: 'Registration failed. Please try again.',
+    registerGeneric: 'An error occurred during registration', // Added new key
     unauthorized: 'You need to be logged in to access this page',
     forbidden: 'You do not have permission to access this resource',
     notFound: 'Page not found',

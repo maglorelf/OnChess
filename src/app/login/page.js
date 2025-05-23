@@ -5,10 +5,12 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { refreshUserData, notifyAuthChange } from '@/lib/userUtils';
+import { useLanguage } from '@/lib/languageContext'; // Added import
 
 const BACKEND_API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL;
 
 export default function LoginPage() {
+  const { translations, t } = useLanguage(); // Added useLanguage hook
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +36,7 @@ export default function LoginPage() {
 
       if (!loginResponse.ok) {
         const errorData = await loginResponse.json();
-        throw new Error(errorData.message || 'Login failed');
+        throw new Error(errorData.message || t('errors.loginGeneric')); // Replaced hardcoded string
       }
 
       // Extract the authentication token from response
@@ -68,7 +70,7 @@ export default function LoginPage() {
       router.push('/');
       router.refresh(); // Refresh to update UI based on auth state
     } catch (err) {
-      setError(err.message || 'An error occurred during login');
+      setError(err.message || t('errors.loginErrorGeneric')); // Replaced hardcoded string
       // Clean up any partial data on error
       localStorage.removeItem('authToken');
       localStorage.removeItem('memberData');
@@ -91,12 +93,13 @@ export default function LoginPage() {
             />
           </div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
-            Sign in to your account
+            {t('auth.signInToYourAccount')} {/* Replaced hardcoded string */}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-300">
-            Or{' '}
+            {t('auth.noAccount').replace("Don't have an account?", 'Or')}{' '}
+            {/* Replaced hardcoded string - needs careful review for i18n */}
             <Link href="/register" className="font-medium text-blue-400 hover:text-blue-300">
-              create a new account
+              {t('auth.register')} {/* Replaced hardcoded string */}
             </Link>
           </p>
         </div>
@@ -114,7 +117,7 @@ export default function LoginPage() {
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="email-address" className="sr-only">
-                Email address
+                {t('auth.email')} {/* Replaced hardcoded string */}
               </label>
               <input
                 id="email-address"
@@ -125,14 +128,14 @@ export default function LoginPage() {
                 className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-600 
                           bg-gray-700 text-gray-200 placeholder-gray-400 rounded-t-md focus:outline-none 
                           focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                placeholder={t('auth.emailPlaceholder')} // Replaced hardcoded string
                 value={email}
                 onChange={e => setEmail(e.target.value)}
               />
             </div>
             <div>
               <label htmlFor="password" className="sr-only">
-                Password
+                {t('auth.password')} {/* Replaced hardcoded string */}
               </label>
               <input
                 id="password"
@@ -143,7 +146,7 @@ export default function LoginPage() {
                 className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-600 
                           bg-gray-700 text-gray-200 placeholder-gray-400 rounded-b-md focus:outline-none 
                           focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
+                placeholder={t('auth.password')} // Replaced hardcoded string
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
@@ -159,13 +162,13 @@ export default function LoginPage() {
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-600 bg-gray-700 rounded"
               />
               <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-300">
-                Remember me
+                {t('auth.rememberMe')} {/* Replaced hardcoded string */}
               </label>
             </div>
 
             <div className="text-sm">
               <a href="#" className="font-medium text-blue-400 hover:text-blue-300">
-                Forgot your password?
+                {t('auth.forgotPassword')} {/* Replaced hardcoded string */}
               </a>
             </div>
           </div>
@@ -182,7 +185,7 @@ export default function LoginPage() {
               {isLoading ? (
                 <span className="inline-block animate-spin rounded-full h-4 w-4 border-t-2 border-white mr-2"></span>
               ) : null}
-              Sign in
+              {t('auth.loginButton')} {/* Replaced hardcoded string */}
             </button>
           </div>
         </form>
