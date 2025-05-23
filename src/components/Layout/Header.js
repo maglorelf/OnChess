@@ -13,7 +13,7 @@ import {
 import { useLanguage } from '@/lib/languageContext';
 import LanguageSelector from '@/components/LanguageSelector';
 
-const ROOK_API_BASE_URL = process.env.ROOK_API_BASE_URL;
+const BACKEND_API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL;
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,7 +27,7 @@ export default function Header() {
   const fetchMemberData = useCallback(async (email, token) => {
     try {
       const memberResponse = await fetch(
-        `${ROOK_API_BASE_URL}/Member/ByEmail/${encodeURIComponent(email)}`,
+        `${BACKEND_API_BASE_URL}/Member/ByEmail/${encodeURIComponent(email)}`,
         {
           method: 'GET',
           headers: {
@@ -59,7 +59,7 @@ export default function Header() {
 
     try {
       // Verify the session with the server
-      const response = await fetch(`${ROOK_API_BASE_URL}/user/current`, {
+      const response = await fetch(`${BACKEND_API_BASE_URL}/user/current`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ export default function Header() {
     try {
       const authToken = typeof window !== 'undefined' ? localStorage.getItem('authToken') : null;
       if (authToken) {
-        await fetch(`${ROOK_API_BASE_URL}/logout`, {
+        await fetch(`${BACKEND_API_BASE_URL}/logout`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${authToken}`,

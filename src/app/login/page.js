@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { refreshUserData, notifyAuthChange } from '@/lib/userUtils';
 
-const ROOK_API_BASE_URL = process.env.ROOK_API_BASE_URL;
+const BACKEND_API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL;
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -21,8 +21,9 @@ export default function LoginPage() {
     setError('');
 
     try {
-      // Step 1: Authenticate with rook.escaques.com/login
-      const loginResponse = await fetch(`${ROOK_API_BASE_URL}/login`, {
+      console.log('Attempting to log in with email:', BACKEND_API_BASE_URL);
+      // Step 1: Authenticate with /login
+      const loginResponse = await fetch(`${BACKEND_API_BASE_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
